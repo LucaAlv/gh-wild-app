@@ -1,0 +1,6 @@
+.DS_Store
+.build/
+GaestehausWild.xcodeproj/
+screenshots/
+xcuserdata/
+*.xcuserstate
