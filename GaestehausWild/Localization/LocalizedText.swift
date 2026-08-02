@@ -12,4 +12,11 @@ struct LocalizedText: Hashable, Sendable {
     subscript(_ language: AppLanguage) -> String {
         language == .en ? en : de
     }
+
+    func replacing(_ token: String, with value: String) -> LocalizedText {
+        .init(
+            de: de.replacingOccurrences(of: token, with: value),
+            en: en.replacingOccurrences(of: token, with: value)
+        )
+    }
 }

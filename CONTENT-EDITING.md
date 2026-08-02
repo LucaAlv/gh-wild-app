@@ -8,6 +8,8 @@ Alle Inhalte stehen im Ordner `GaestehausWild/Content`.
 
 - `Content.swift`: Startseite, Zimmer, Kontaktdaten und Galerie
 - `Content+Stay.swift`: Frühstück, Garten und Wissenswertes
+- `Content+Arrival.swift`: Offline-Spickzettel für Messe, Hauptbahnhof und Flughafen
+- `Content+Notifications.swift`: Texte der lokalen Erinnerungen
 - `Content+House.swift`: Über uns, sonstige Leistungen und Gutscheine
 - `Content+Nearby.swift`: Ausflugsziele
 - `Content+Legal.swift`: Impressum, Datenschutz und AGB
@@ -28,6 +30,49 @@ Wichtig: Deutsch ist die Quelle. Nach einer deutschen Änderung immer auch den e
 ## Kontaktdaten und Preise
 
 Telefon, E-Mail und Adresse stehen oben in `Content.swift`. Zimmerpreise stehen in der Liste `rooms`, der Frühstückspreis in `Content+Stay.swift` als Zahl. Das €-Zeichen wird von der App ergänzt.
+
+Frühstückszeiten stehen ebenfalls in `Content+Stay.swift`:
+
+```swift
+static let weekday = BreakfastWindow(startHour: 7, startMinute: 0, endHour: 10, endMinute: 0)
+static let sunday = BreakfastWindow(startHour: 8, startMinute: 0, endHour: 10, endMinute: 0)
+```
+
+## WLAN-Zugangsdaten
+
+SSID und Passwort stehen in `Content+Stay.swift` unter `Content.WiFi`:
+
+```swift
+static let ssid = "Gaestehaus-Wild-Gast"
+static let password = "..."
+```
+
+Vor Veröffentlichung muss hier das echte **Gastnetz** eingetragen und von der Familie bestätigt werden. Niemals das private Hausnetz verwenden. Das Passwort ist Bestandteil der öffentlich herunterladbaren App. Sonderzeichen wie `;`, `:`, `,`, `\` und `"` dürfen normal eingegeben werden; der QR-Code maskiert sie automatisch.
+
+## Umgebung & Kategorien
+
+Alle Ausflugsziele stehen in `Content+Nearby.swift`. Einen vorhandenen `.init(...)`-Block kopieren, eine eindeutige `id` vergeben und deutsche sowie englische Texte ausfüllen. Verfügbare Kategorien:
+
+- `.food` – Essen & Trinken
+- `.withKids` – Mit Kindern
+- `.fair` – Messe & Anreise
+- `.rainyDay` – Bei Regen
+- `.shopping` – Einkaufen
+- `.nature` – Natur & Bewegung
+
+Ein Ziel darf mehrere Kategorien haben. `travel:` enthält die von der Familie geprüften Wegzeiten und Verkehrsmittel. Diese Werte werden offline angezeigt und sollten bei Fahrplanänderungen kontrolliert werden. `latitude` und `longitude` bestimmen Luftlinie, Sortierung, Karte und Karten-Link.
+
+`image:` ist optional. Ohne Bild zeigt die Karte automatisch ein passendes Kategoriesymbol. `openingHours`, `priceHint`, `website` und `phone` dürfen ebenfalls entfallen. `familyNote` sollte bei jedem Ziel gepflegt werden – hier gehört der persönliche Tipp hinein, den allgemeine Karten-Apps nicht kennen.
+
+## Anreise-Spickzettel
+
+Die drei Offline-Routen stehen in `Content+Arrival.swift`. Jeder Eintrag enthält ein Ziel, eine grobe Gesamtdauer, nummerierte Schritte und optional einen Familientipp. Bei VGN-Fahrplanwechseln besonders Linien, Umstiege und Fahrtrichtungen prüfen. Die App berechnet absichtlich keine Online-Route.
+
+## Benachrichtigungstexte
+
+Alle Titel und Texte stehen in `Content+Notifications.swift`. Sie werden beim Aktivieren in der gerade gewählten App-Sprache geplant. Nach einem neuen App-Build werden bereits geplante Erinnerungen beim nächsten Öffnen der App aktualisiert.
+
+In Texten wie `Content.StayCopy.upcoming` steht `{n}` für eine Zahl; beim Frühstück steht `{time}` für die Uhrzeit. Diese Tokens inklusive geschweifter Klammern nicht übersetzen oder entfernen. Singular und Plural sind getrennte Texte, weil Deutsch und Englisch unterschiedlich formuliert werden.
 
 ## Datenschutz vor Veröffentlichung
 
@@ -100,4 +145,10 @@ Für einen vollständigen Simulator-Build:
 
 ```bash
 make run
+```
+
+Die schnellen Logiktests für Aufenthaltsphasen, Sommerzeit, Frühstück, Erinnerungen, Entfernungen und WLAN-QR-Code laufen mit:
+
+```bash
+make test
 ```

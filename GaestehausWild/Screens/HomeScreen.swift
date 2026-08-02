@@ -27,6 +27,11 @@ struct HomeScreen: View {
                         LeadParagraph(text: Content.homeLead)
                     }
 
+                    NavigationLink(value: Page.myStay) {
+                        StayStatusCard()
+                    }
+                    .buttonStyle(.plain)
+
                     VStack(spacing: Theme.Spacing.large) {
                         ForEach(teasers, id: \.0) { page, image, text in
                             NavigationLink(value: page) {

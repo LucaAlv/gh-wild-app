@@ -9,10 +9,14 @@ struct BreakfastScreen: View {
                 .clipShape(RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius))
 
             HStack(spacing: Theme.Spacing.medium) {
-                Label("7:00 – 10:00", systemImage: "clock")
+                Label(
+                    breakfastHours,
+                    systemImage: "clock"
+                )
                     .font(Theme.Typography.bodyStrong)
+                    .minimumScaleFactor(0.75)
                 Spacer()
-                Text(language == .de ? "14 € pro Person" : "€14 per person")
+                Text(language == .de ? "\(Content.Breakfast.price) € pro Person" : "€\(Content.Breakfast.price) per person")
                     .font(Theme.Typography.button)
                     .foregroundStyle(Theme.ColorToken.paper)
                     .padding(.horizontal, 13)
@@ -33,6 +37,19 @@ struct BreakfastScreen: View {
 
             ActionButtonRow()
         }
+    }
+
+    private var breakfastHours: String {
+        let weekday = Content.Breakfast.weekday
+        let sunday = Content.Breakfast.sunday
+        if language == .de {
+            return "Mo–Sa \(time(weekday.startHour, weekday.startMinute))–\(time(weekday.endHour, weekday.endMinute)) · So \(time(sunday.startHour, sunday.startMinute))–\(time(sunday.endHour, sunday.endMinute))"
+        }
+        return "Mon–Sat \(time(weekday.startHour, weekday.startMinute))–\(time(weekday.endHour, weekday.endMinute)) · Sun \(time(sunday.startHour, sunday.startMinute))–\(time(sunday.endHour, sunday.endMinute))"
+    }
+
+    private func time(_ hour: Int, _ minute: Int) -> String {
+        String(format: "%d:%02d", hour, minute)
     }
 }
 
