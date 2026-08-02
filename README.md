@@ -2,7 +2,7 @@
 
 A bilingual, offline-first SwiftUI companion for guests of [Gästehaus Wild](https://www.gaestehaus-wild.com/) in Oberasbach.
 
-The first version mirrors the public information on the website without a booking or inquiry form. Guests can call, e-mail, open directions, and browse all content and photos without a network connection.
+The app is an offline-first companion before and during a stay. Guests can save trip dates locally, see timely check-in, Wi-Fi, breakfast and check-out information, opt into local reminders, and browse a curated bilingual area guide without an account or network connection. Calling, e-mail and directions remain one tap away; there is deliberately no booking or inquiry form.
 
 ## Requirements
 
@@ -13,6 +13,22 @@ The first version mirrors the public information on the website without a bookin
 
 ```bash
 make run
+```
+
+Run the pure-logic test suite with:
+
+```bash
+make test
+```
+
+DEBUG builds support launch arguments for quickly checking stay phases and compressed local notifications:
+
+```bash
+xcrun simctl launch booted com.gaestehauswild.app \
+  -startPage myStay -debugStayArrivalOffset -1 -debugStayDepartureOffset 2
+
+xcrun simctl launch booted com.gaestehauswild.app \
+  -startPage myStay -debugCompressNotifications YES
 ```
 
 The generated `GaestehausWild.xcodeproj` is intentionally ignored. `project.yml` is the source of truth.

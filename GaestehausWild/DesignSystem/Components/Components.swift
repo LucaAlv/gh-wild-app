@@ -72,6 +72,8 @@ struct PageScaffold<ContentView: View>: View {
                 Text(title[language])
                     .font(Theme.Typography.display)
                     .foregroundStyle(Theme.ColorToken.ink)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                     .padding(.top, Theme.Spacing.large)
                 content
             }
@@ -308,7 +310,7 @@ struct TeaserCard: View {
 }
 
 struct MapSnapshotCard: View {
-    private let coordinate = CLLocationCoordinate2D(latitude: 49.4224662, longitude: 10.9807374)
+    private let coordinate = Geo.guesthouse
 
     var body: some View {
         Map(initialPosition: .region(MKCoordinateRegion(

@@ -7,9 +7,9 @@ struct MenuSheet: View {
     @Binding var languagePreference: String
 
     private let groups: [(LocalizedText, [Page])] = [
-        (.init(de: "Aufenthalt", en: "Your stay"), [.rooms, .breakfast, .garden, .goodToKnow]),
+        (.init(de: "Aufenthalt", en: "Your stay"), [.myStay, .rooms, .breakfast, .garden, .goodToKnow]),
         (.init(de: "Haus & Familie", en: "House & family"), [.about, .gallery, .services, .vouchers]),
-        (.init(de: "Umgebung", en: "Explore"), [.nearby, .contact]),
+        (.init(de: "Umgebung", en: "Explore"), [.nearby, .arrival, .contact]),
         (.init(de: "Rechtliches", en: "Legal"), [.impressum, .datenschutz, .agb])
     ]
 
