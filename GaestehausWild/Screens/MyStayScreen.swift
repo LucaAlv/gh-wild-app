@@ -60,7 +60,7 @@ struct MyStayScreen: View {
             )
             stayDates
             if let room = store.room { roomSummary(room) }
-            infoCard(rows: [
+            InfoCard(rows: [
                 ("clock", .init(de: "Check-in", en: "Check-in"), .init(de: "Ab 15:00 Uhr", en: "From 3:00 pm")),
                 ("parkingsign", .init(de: "Parken", en: "Parking"), Content.StayCopy.parking),
                 ("key", .init(de: "Späte Anreise", en: "Late arrival"), Content.StayCopy.lateArrival)
@@ -82,7 +82,7 @@ struct MyStayScreen: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Theme.ColorToken.paper, in: RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius))
             }
-            infoCard(rows: [
+            InfoCard(rows: [
                 ("key", .init(de: "Schlüssel", en: "Keys"), Content.StayCopy.keyHandover),
                 ("parkingsign", .init(de: "Parken", en: "Parking"), Content.StayCopy.parking)
             ])
@@ -97,7 +97,7 @@ struct MyStayScreen: View {
             )
             BreakfastStatusTile()
             WiFiTile()
-            infoCard(rows: [
+            InfoCard(rows: [
                 ("clock.arrow.circlepath", .init(de: "Check-out", en: "Check-out"), .init(de: "Am Abreisetag bis 11:00 Uhr", en: "By 11:00 am on departure day"))
             ])
 
@@ -147,6 +147,11 @@ struct MyStayScreen: View {
 
     private var stayForm: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.large) {
+            NavigationLink(value: Page.guestNow) {
+                GuestQuickAccessCard()
+            }
+            .buttonStyle(.plain)
+
             LeadParagraph(text: .init(
                 de: "Speichern Sie Ihre Reisedaten nur auf diesem Gerät. Die Startseite zeigt dann genau das, was gerade wichtig ist.",
                 en: "Save your travel dates on this device only. The home screen will then show what matters right now."
@@ -264,7 +269,7 @@ struct MyStayScreen: View {
     private var stayDates: some View {
         Group {
             if let stay = store.stay {
-                infoCard(rows: [
+                InfoCard(rows: [
                     ("calendar", .init(de: "Anreise", en: "Arrival"), .init(de: date(stay.arrival), en: date(stay.arrival))),
                     ("calendar.badge.checkmark", .init(de: "Abreise", en: "Departure"), .init(de: date(stay.departure), en: date(stay.departure)))
                 ])
@@ -276,17 +281,6 @@ struct MyStayScreen: View {
         InfoRow(symbol: "bed.double", label: .init(de: "Ihr Zimmer", en: "Your room"), value: room.name)
             .padding(Theme.Spacing.large)
             .background(Theme.ColorToken.paper, in: RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius))
-    }
-
-    private func infoCard(rows: [(String, LocalizedText, LocalizedText)]) -> some View {
-        VStack(spacing: Theme.Spacing.medium) {
-            ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
-                InfoRow(symbol: row.0, label: row.1, value: row.2)
-                if index < rows.count - 1 { Divider().overlay(Theme.ColorToken.brown.opacity(0.16)) }
-            }
-        }
-        .padding(Theme.Spacing.large)
-        .background(Theme.ColorToken.paper, in: RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius))
     }
 
     private var minimumDeparture: Date {

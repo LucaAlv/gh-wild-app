@@ -68,15 +68,3 @@ struct GardenScreen: View {
         }
     }
 }
-
-struct GoodToKnowScreen: View {
-    var body: some View {
-        PageScaffold(title: Page.goodToKnow.title) {
-            LeadParagraph(text: Content.GoodToKnow.intro)
-            ForEach(Array(Content.GoodToKnow.groups.enumerated()), id: \.offset) { _, group in
-                SectionHeader(title: group.0)
-                FeatureList(features: group.1)
-            }
-        }
-    }
-}

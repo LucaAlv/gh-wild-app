@@ -13,6 +13,14 @@ targets:
   GaestehausWild:
     type: application
     platform: iOS
+    info:
+      path: Config/GaestehausWild-Info.plist
+      properties:
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: com.gaestehauswild.app
+            CFBundleURLSchemes:
+              - gaestehauswild
     sources:
       - path: GaestehausWild
         excludes:

@@ -41,22 +41,34 @@ struct RootView: View {
         }
         .tint(Theme.ColorToken.brown)
         .environment(\.appLanguage, language)
-        .fullScreenCover(isPresented: $isMenuPresented, onDismiss: navigateToPendingPage) {
+        .fullScreenCover(isPresented: $isMenuPresented, onDismiss: navigateToPendingDestination) {
             @Bindable var router = router
             MenuSheet(selectedPage: $router.pendingPage, languagePreference: $languagePreference)
                 .environment(\.appLanguage, language)
         }
         .onAppear {
             applyDebugRouteIfNeeded()
-            if router.pendingPage != nil { navigateToPendingPage() }
+            if router.pendingPage != nil || router.pendingPlaceID != nil { navigateToPendingDestination() }
         }
         .onChange(of: router.pendingPage) { _, page in
             guard page != nil else { return }
             if isMenuPresented {
                 isMenuPresented = false
             } else {
-                navigateToPendingPage()
+                navigateToPendingDestination()
             }
+        }
+        .onChange(of: router.pendingPlaceID) { _, placeID in
+            guard placeID != nil else { return }
+            if isMenuPresented {
+                isMenuPresented = false
+            } else {
+                navigateToPendingDestination()
+            }
+        }
+        .onOpenURL { url in
+            guard let deepLink = DeepLink.parse(url) else { return }
+            router.open(deepLink)
         }
         .onChange(of: language) { _, newLanguage in
             Task {
@@ -97,10 +109,19 @@ struct RootView: View {
         }
     }
 
-    private func navigateToPendingPage() {
-        guard let pendingPage = router.pendingPage else { return }
-        path.append(pendingPage)
-        router.pendingPage = nil
+    private func navigateToPendingDestination() {
+        if let placeID = router.pendingPlaceID {
+            router.pendingPlaceID = nil
+            if let place = Content.nearbyPlaces.first(where: { $0.id == placeID }) {
+                path.append(place)
+            }
+            return
+        }
+
+        if let pendingPage = router.pendingPage {
+            router.pendingPage = nil
+            path.append(pendingPage)
+        }
     }
 
     private func applyDebugRouteIfNeeded() {
@@ -153,11 +174,12 @@ private struct ScreenRouter: View {
     @ViewBuilder
     var body: some View {
         switch page {
+        case .guestNow: GuestNowScreen()
         case .myStay: MyStayScreen()
         case .rooms: RoomsScreen()
         case .breakfast: BreakfastScreen()
         case .garden: GardenScreen()
-        case .goodToKnow: GoodToKnowScreen()
+        case .goodToKnow: GuideScreen()
         case .about: AboutScreen()
         case .gallery: GalleryScreen()
         case .services: ServicesScreen()
