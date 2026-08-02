@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeScreen: View {
     @Environment(\.appLanguage) private var language
+    @Environment(StayStore.self) private var stayStore
 
     private let teasers: [(Page, String, LocalizedText)] = [
         (.rooms, "galerie-03", .init(de: "Sieben Zimmerkategorien, jedes Zimmer mit seinem eigenen Charakter.", en: "Seven room categories, each with a character of its own.")),
@@ -31,6 +32,13 @@ struct HomeScreen: View {
                         StayStatusCard()
                     }
                     .buttonStyle(.plain)
+
+                    if case .notSet = stayStore.phase() {
+                        NavigationLink(value: Page.guestNow) {
+                            GuestQuickAccessCard()
+                        }
+                        .buttonStyle(.plain)
+                    }
 
                     VStack(spacing: Theme.Spacing.large) {
                         ForEach(teasers, id: \.0) { page, image, text in

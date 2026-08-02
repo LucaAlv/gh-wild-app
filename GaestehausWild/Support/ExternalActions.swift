@@ -18,4 +18,10 @@ enum ExternalActions {
         ]
         return components.url!
     }
+
+    static func mapsSearchURL(query: String) -> URL {
+        var components = URLComponents(string: "https://maps.apple.com/")!
+        components.queryItems = [URLQueryItem(name: "q", value: query)]
+        return components.url!
+    }
 }

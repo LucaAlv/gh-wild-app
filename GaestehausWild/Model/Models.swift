@@ -1,7 +1,7 @@
 import Foundation
 
 enum Page: String, Hashable, Identifiable, CaseIterable, Sendable {
-    case myStay, rooms, breakfast, garden, goodToKnow
+    case guestNow, myStay, rooms, breakfast, garden, goodToKnow
     case about, gallery, services, vouchers
     case nearby, arrival, contact
     case impressum, datenschutz, agb
@@ -10,11 +10,12 @@ enum Page: String, Hashable, Identifiable, CaseIterable, Sendable {
 
     var title: LocalizedText {
         switch self {
+        case .guestNow: .init(de: "Ich bin zu Gast", en: "I'm staying here")
         case .myStay: .init(de: "Mein Aufenthalt", en: "My stay")
         case .rooms: .init(de: "Zimmer", en: "Rooms")
         case .breakfast: .init(de: "Frühstück", en: "Breakfast")
         case .garden: .init(de: "Garten & Terrasse", en: "Garden & Terrace")
-        case .goodToKnow: .init(de: "Wissenswertes", en: "Good to know")
+        case .goodToKnow: .init(de: "Gästemappe A–Z", en: "House guide A–Z")
         case .about: .init(de: "Über uns", en: "About us")
         case .gallery: .init(de: "Galerie", en: "Gallery")
         case .services: .init(de: "Sonstige Leistungen", en: "Other services")
@@ -30,11 +31,12 @@ enum Page: String, Hashable, Identifiable, CaseIterable, Sendable {
 
     var symbol: String {
         switch self {
+        case .guestNow: "key.fill"
         case .myStay: "suitcase"
         case .rooms: "bed.double"
         case .breakfast: "cup.and.saucer"
         case .garden: "leaf"
-        case .goodToKnow: "info.circle"
+        case .goodToKnow: "text.book.closed"
         case .about: "house.lodge"
         case .gallery: "photo.on.rectangle.angled"
         case .services: "person.2"

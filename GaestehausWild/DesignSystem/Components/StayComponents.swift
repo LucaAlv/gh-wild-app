@@ -35,6 +35,40 @@ struct StayInviteCard: View {
     }
 }
 
+struct GuestQuickAccessCard: View {
+    @Environment(\.appLanguage) private var language
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
+        let layout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Theme.Spacing.large))
+            : AnyLayout(HStackLayout(alignment: .center, spacing: Theme.Spacing.large))
+        layout {
+            Image(systemName: "key.fill")
+                .font(.system(size: 22, weight: .semibold))
+                .foregroundStyle(Theme.ColorToken.paper)
+                .frame(width: 48, height: 48)
+                .background(Theme.ColorToken.brown, in: Circle())
+            VStack(alignment: .leading, spacing: Theme.Spacing.xSmall) {
+                Text(language == .de ? "Schon im Haus?" : "Already at the guesthouse?")
+                    .font(Theme.Typography.title2)
+                    .foregroundStyle(Theme.ColorToken.ink)
+                Text(language == .de ? "WLAN, Frühstückszeiten und die wichtigsten Hausinfos sofort öffnen – ganz ohne Reisedaten." : "Open Wi-Fi, breakfast times and essential house information instantly—no travel dates needed.")
+                    .font(Theme.Typography.body)
+                    .foregroundStyle(Theme.ColorToken.graphite)
+                Label(language == .de ? "Sofort-Zugriff" : "Instant access", systemImage: "arrow.right")
+                    .font(Theme.Typography.button)
+                    .foregroundStyle(Theme.ColorToken.brown)
+                    .padding(.top, 2)
+            }
+        }
+        .padding(Theme.Spacing.large)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.ColorToken.paper, in: RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius))
+        .overlay { RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius).stroke(Theme.ColorToken.brown.opacity(0.28)) }
+    }
+}
+
 struct StayStatusCard: View {
     @Environment(\.appLanguage) private var language
     @Environment(StayStore.self) private var store

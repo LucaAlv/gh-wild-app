@@ -7,7 +7,8 @@ Diese App funktioniert offline. Texte und Bilder werden deshalb mit der App ausg
 Alle Inhalte stehen im Ordner `GaestehausWild/Content`.
 
 - `Content.swift`: Startseite, Zimmer, Kontaktdaten und Galerie
-- `Content+Stay.swift`: Frühstück, Garten und Wissenswertes
+- `Content+Stay.swift`: Frühstück, Garten und Aufenthaltsinfos
+- `Content+Guide.swift`: digitale Gästemappe A–Z
 - `Content+Arrival.swift`: Offline-Spickzettel für Messe, Hauptbahnhof und Flughafen
 - `Content+Notifications.swift`: Texte der lokalen Erinnerungen
 - `Content+House.swift`: Über uns, sonstige Leistungen und Gutscheine
@@ -48,6 +49,29 @@ static let password = "..."
 ```
 
 Vor Veröffentlichung muss hier das echte **Gastnetz** eingetragen und von der Familie bestätigt werden. Niemals das private Hausnetz verwenden. Das Passwort ist Bestandteil der öffentlich herunterladbaren App. Sonderzeichen wie `;`, `:`, `,`, `\` und `"` dürfen normal eingegeben werden; der QR-Code maskiert sie automatisch.
+
+## Zimmerkarte & App-QR-Codes
+
+Die gedruckte Zimmerkarte sollte als großen, primären QR-Code den App-Store-Link tragen. Dieser Link ist noch ein Platzhalter, bis der endgültige App-Store-Eintrag verfügbar ist. Als kleinerer, sekundärer QR-Code kommt der Direktlink für bereits installierte Apps auf die Karte:
+
+```text
+gaestehauswild://gast
+```
+
+Der Direktlink öffnet WLAN, Frühstückszeiten und die wichtigsten Hausinfos ohne Eingabe von Reisedaten. Beliebige QR-Codes erzeugt die App technisch über `QRCode.image(from:)`; der WLAN-Code verwendet weiterhin automatisch SSID und Passwort aus `Content+Stay.swift`. Beide gedruckten Codes vor jeder neuen Auflage mit einem echten iPhone testen.
+
+## Gästemappe (A–Z)
+
+Alle Einträge stehen in `Content+Guide.swift` in der Liste `Content.guide`. Für einen neuen Eintrag einen vollständigen `.init(...)`-Block kopieren und eine eindeutige, dauerhaft stabile `id` vergeben. `title` und `answer` müssen immer auf Deutsch und Englisch gepflegt werden. `keywords` enthält Suchbegriffe und Synonyme aus beiden Sprachen, die nicht schon selbstverständlich im Titel oder Antworttext stehen.
+
+Verfügbare Kategorien sind `.emergency`, `.room`, `.house`, `.food`, `.practical` und `.departure`. Mögliche Aktionen sind:
+
+- `.call("tel:...")` – Telefonnummer anrufen
+- `.map(query: "...")` – eine Suche in Apple Karten öffnen
+- `.link("https://...")` – Website öffnen
+- `.page(.breakfast)` – eine Seite innerhalb der App öffnen
+
+Die Notruf-Einträge **112 und 110 dürfen niemals entfernt werden**. Angaben mit dem Kommentar `// FAMILIE BESTÄTIGEN:` sind redaktionelle Platzhalter. Der sichtbare Platzhaltertext muss vor Veröffentlichung durch bestätigte deutsche und englische Angaben ersetzt werden; danach auch den Kommentar entfernen.
 
 ## Umgebung & Kategorien
 

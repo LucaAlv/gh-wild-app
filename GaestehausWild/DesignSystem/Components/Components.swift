@@ -354,3 +354,53 @@ struct InfoRow: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
+
+struct InfoCard: View {
+    let rows: [(String, LocalizedText, LocalizedText)]
+
+    var body: some View {
+        VStack(spacing: Theme.Spacing.medium) {
+            ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
+                InfoRow(symbol: row.0, label: row.1, value: row.2)
+                if index < rows.count - 1 {
+                    Divider().overlay(Theme.ColorToken.brown.opacity(0.16))
+                }
+            }
+        }
+        .padding(Theme.Spacing.large)
+        .background(Theme.ColorToken.paper, in: RoundedRectangle(cornerRadius: Theme.Metric.cornerRadius))
+    }
+}
+
+struct SearchField: View {
+    @Environment(\.appLanguage) private var language
+    @Binding var text: String
+    let placeholder: LocalizedText
+
+    var body: some View {
+        HStack(spacing: Theme.Spacing.medium) {
+            Image(systemName: "magnifyingglass")
+                .foregroundStyle(Theme.ColorToken.brown)
+            TextField(placeholder[language], text: $text)
+                .font(Theme.Typography.body)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+            if !text.isEmpty {
+                Button {
+                    text = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(Theme.ColorToken.ash)
+                }
+                .accessibilityLabel(language == .de ? "Suche löschen" : "Clear search")
+            }
+        }
+        .padding(.horizontal, Theme.Spacing.large)
+        .frame(minHeight: 52)
+        .background(Theme.ColorToken.paper, in: RoundedRectangle(cornerRadius: 14))
+        .overlay {
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(Theme.ColorToken.brown.opacity(0.24))
+        }
+    }
+}
