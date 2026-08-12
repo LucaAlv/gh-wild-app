@@ -1,0 +1,22 @@
+{
+  "symbol": "cross.case",
+  "title": {
+    "de": "Apotheke",
+    "en": "Pharmacy"
+  },
+  "answer": {
+    "de": "Bitte fragen Sie uns direkt – wir helfen Ihnen gerne persönlich weiter.",
+    "en": "Please ask us directly—we will be happy to help in person."
+  },
+  "keywords": [
+    "Medikamente Medizin Notdienst medicine chemist prescription"
+  ],
+  "category": "practical",
+  "actions": [
+    {
+      "type": "map",
+      "target": "Apotheke in der Nähe von Gästehaus Wild Oberasbach"
+    }
+  ],
+  "needsOwnerReview": true
+}

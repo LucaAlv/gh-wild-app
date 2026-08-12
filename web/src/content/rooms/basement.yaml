@@ -1,0 +1,19 @@
+{
+  "name": {
+    "de": "Souterrain Zimmer",
+    "en": "Lower-ground-floor room"
+  },
+  "price": 65,
+  "occupancy": {
+    "de": "Für 1–2 Personen",
+    "en": "For 1–2 guests"
+  },
+  "description": {
+    "de": "Ein ruhiges, angenehm kühles Zimmer im Souterrain – ideal für einen unkomplizierten Aufenthalt.",
+    "en": "A quiet, pleasantly cool lower-ground-floor room, ideal for an easy stay."
+  },
+  "images": [
+    "galerie-14",
+    "galerie-15"
+  ]
+}

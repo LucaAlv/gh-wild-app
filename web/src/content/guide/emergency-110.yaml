@@ -1,0 +1,22 @@
+{
+  "symbol": "shield.fill",
+  "title": {
+    "de": "Polizei 110",
+    "en": "Police 110"
+  },
+  "answer": {
+    "de": "In einer akuten Gefahrensituation erreichen Sie die Polizei unter 110.",
+    "en": "If you are in immediate danger, call the police on 110."
+  },
+  "keywords": [
+    "Gefahr Diebstahl Einbruch theft danger"
+  ],
+  "category": "emergency",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:110"
+    }
+  ],
+  "needsOwnerReview": false
+}

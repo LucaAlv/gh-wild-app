@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Landgasthof Zur frischen Quelle",
+    "en": "Zur frischen Quelle country inn"
+  },
+  "subtitle": {
+    "de": "Landgasthof in Rehdorf",
+    "en": "Country inn in Rehdorf"
+  },
+  "description": {
+    "de": "Ein bodenständiger Landgasthof westlich von Oberasbach – gut mit einem Ausflug Richtung Cadolzburg zu verbinden.",
+    "en": "A down-to-earth country inn west of Oberasbach, easy to combine with a trip towards Cadolzburg."
+  },
+  "latitude": 49.4147,
+  "longitude": 10.9186,
+  "categories": [
+    "food"
+  ],
+  "travel": [
+    {
+      "minutes": 12,
+      "mode": "car"
+    },
+    {
+      "minutes": 28,
+      "mode": "bike"
+    }
+  ],
+  "openingHours": {
+    "de": "Öffnungszeiten bitte vorab prüfen",
+    "en": "Please check opening hours before visiting"
+  },
+  "familyNote": {
+    "de": "Ideal, wenn Sie ohnehin mit dem Auto westwärts unterwegs sind; ohne Auto ist der Weg weniger praktisch.",
+    "en": "Ideal if you are already heading west by car; without a car the route is less convenient."
+  },
+  "website": "http://landgasthof-frische-quelle.de/pension/",
+  "phone": "+4991198062068"
+}

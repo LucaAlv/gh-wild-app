@@ -1,0 +1,22 @@
+{
+  "symbol": "cross.case.fill",
+  "title": {
+    "de": "Notruf 112",
+    "en": "Emergency number 112"
+  },
+  "answer": {
+    "de": "Bei medizinischen Notfällen oder Feuer rufen Sie sofort die 112 an. Die Nummer funktioniert europaweit.",
+    "en": "For a medical emergency or fire, call 112 immediately. The number works throughout Europe."
+  },
+  "keywords": [
+    "Rettungsdienst Feuerwehr Unfall Arzt ambulance fire medical doctor"
+  ],
+  "category": "emergency",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:112"
+    }
+  ],
+  "needsOwnerReview": false
+}

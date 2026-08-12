@@ -1,0 +1,17 @@
+{
+  "symbol": "clock",
+  "title": {
+    "de": "Check-in",
+    "en": "Check-in"
+  },
+  "answer": {
+    "de": "Ihr Zimmer steht am Anreisetag ab 15:00 Uhr für Sie bereit.",
+    "en": "Your room is ready from 3:00 pm on your arrival day."
+  },
+  "keywords": [
+    "Ankunft Einchecken Zimmer beziehen arrival time room"
+  ],
+  "category": "departure",
+  "actions": [],
+  "needsOwnerReview": false
+}

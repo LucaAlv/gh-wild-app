@@ -1,0 +1,26 @@
+{
+  "symbol": "car.side.fill",
+  "title": {
+    "de": "Taxi",
+    "en": "Taxi"
+  },
+  "answer": {
+    "de": "Bitte fragen Sie uns direkt – wir helfen Ihnen gerne persönlich weiter.",
+    "en": "Please ask us directly—we will be happy to help in person."
+  },
+  "keywords": [
+    "Fahrt Bahnhof Flughafen cab ride station airport"
+  ],
+  "category": "practical",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    },
+    {
+      "type": "map",
+      "target": "Taxi in Oberasbach"
+    }
+  ],
+  "needsOwnerReview": true
+}

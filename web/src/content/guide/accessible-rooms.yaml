@@ -1,0 +1,22 @@
+{
+  "symbol": "figure.roll",
+  "title": {
+    "de": "Barrierefreie Zimmer",
+    "en": "Accessible rooms"
+  },
+  "answer": {
+    "de": "Barrierefreie Zimmer sind nach vorheriger Absprache verfügbar. Bitte sprechen Sie uns an.",
+    "en": "Accessible rooms are available by prior arrangement. Please contact us."
+  },
+  "keywords": [
+    "Rollstuhl Aufzug wheelchair mobility lift accessibility"
+  ],
+  "category": "house",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": false
+}

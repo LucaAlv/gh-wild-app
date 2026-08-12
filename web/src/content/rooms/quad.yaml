@@ -1,0 +1,19 @@
+{
+  "name": {
+    "de": "Vierbettzimmer",
+    "en": "Quadruple room"
+  },
+  "price": 130,
+  "occupancy": {
+    "de": "Für 4 Personen",
+    "en": "For 4 guests"
+  },
+  "description": {
+    "de": "Gemeinsam reisen und dennoch komfortabel wohnen – mit ausreichend Platz für vier Personen.",
+    "en": "Travel together without giving up comfort, with ample room for four guests."
+  },
+  "images": [
+    "galerie-12",
+    "galerie-13"
+  ]
+}

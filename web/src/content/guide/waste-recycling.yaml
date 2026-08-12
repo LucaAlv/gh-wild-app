@@ -1,0 +1,17 @@
+{
+  "symbol": "arrow.3.trianglepath",
+  "title": {
+    "de": "Müll & Recycling",
+    "en": "Waste & recycling"
+  },
+  "answer": {
+    "de": "Bitte fragen Sie uns direkt – wir helfen Ihnen gerne persönlich weiter.",
+    "en": "Please ask us directly—we will be happy to help in person."
+  },
+  "keywords": [
+    "Abfall Glas Papier Plastik bins rubbish trash garbage"
+  ],
+  "category": "house",
+  "actions": [],
+  "needsOwnerReview": true
+}

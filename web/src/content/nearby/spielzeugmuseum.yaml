@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Spielzeugmuseum Nürnberg",
+    "en": "Nuremberg Toy Museum"
+  },
+  "subtitle": {
+    "de": "Spielzeug aus mehreren Jahrhunderten",
+    "en": "Toys across the centuries"
+  },
+  "description": {
+    "de": "Puppen, Blechspielzeug, Eisenbahnen und moderne Spielwelten in einem historischen Altstadthaus.",
+    "en": "Dolls, tin toys, model railways and modern play worlds in a historic old-town building."
+  },
+  "latitude": 49.4557,
+  "longitude": 11.0739,
+  "categories": [
+    "rainyDay",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 27,
+      "mode": "car"
+    },
+    {
+      "minutes": 41,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Montags geschlossen",
+    "en": "Closed Mondays"
+  },
+  "familyNote": {
+    "de": "Im Sommer gehört der Außenspielbereich dazu. Das Museum lässt sich gut mit Hauptmarkt und Burg verbinden.",
+    "en": "In summer, include the outdoor play area. The museum combines well with Hauptmarkt and the castle."
+  },
+  "website": "https://museen.nuernberg.de/spielzeugmuseum/"
+}

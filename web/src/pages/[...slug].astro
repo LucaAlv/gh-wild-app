@@ -1,0 +1,10 @@
+---
+import PageRouter from '../components/PageRouter.astro';
+import { routes } from '../lib/routes';
+
+export function getStaticPaths() {
+  return routes.filter((route) => route.de).map((route) => ({ params: { slug: route.de }, props: { route } }));
+}
+const { route } = Astro.props;
+---
+<PageRouter locale="de" route={route} />

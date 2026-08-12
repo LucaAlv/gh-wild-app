@@ -1,0 +1,22 @@
+{
+  "symbol": "key",
+  "title": {
+    "de": "Schlüsselübergabe",
+    "en": "Key handover"
+  },
+  "answer": {
+    "de": "Ihre Schlüsselübergabe stimmen wir persönlich mit Ihnen ab.",
+    "en": "We arrange your key handover with you personally."
+  },
+  "keywords": [
+    "Zimmerschlüssel Ankunft key room arrival"
+  ],
+  "category": "departure",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": false
+}

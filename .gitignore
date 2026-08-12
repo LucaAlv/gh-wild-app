@@ -5,3 +5,11 @@ screenshots/
 xcuserdata/
 *.xcuserstate
 Config/GaestehausWild-Info.plist
+.context/
+web/node_modules/
+web/dist/
+web/.astro/
+web/.vercel/
+web/.env
+web/.env.*
+!web/.env.example

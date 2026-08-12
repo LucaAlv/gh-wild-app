@@ -1,0 +1,43 @@
+{
+  "name": {
+    "de": "DB Museum",
+    "en": "DB Museum"
+  },
+  "subtitle": {
+    "de": "Eisenbahngeschichte & KinderBahnLand",
+    "en": "Railway history & children’s railway world"
+  },
+  "description": {
+    "de": "Historische Lokomotiven und Wagen, Modelle und ein eigener Erlebnisbereich für Kinder direkt am Opernhaus.",
+    "en": "Historic locomotives and coaches, models and a dedicated children’s activity area by Opernhaus."
+  },
+  "latitude": 49.4468,
+  "longitude": 11.0734,
+  "categories": [
+    "rainyDay",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 24,
+      "mode": "car"
+    },
+    {
+      "minutes": 34,
+      "mode": "transit",
+      "note": {
+        "de": "Bus nach Stein, U2 bis Opernhaus",
+        "en": "Bus to Stein, U2 to Opernhaus"
+      }
+    }
+  ],
+  "openingHours": {
+    "de": "Montags geschlossen",
+    "en": "Closed Mondays"
+  },
+  "familyNote": {
+    "de": "Mit Kindern zuerst ins KinderBahnLand – später am Tag wird es dort oft voller.",
+    "en": "With children, visit the children’s railway area first—it often gets busier later."
+  },
+  "website": "https://dbmuseum.de/nuernberg"
+}

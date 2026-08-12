@@ -1,0 +1,22 @@
+{
+  "symbol": "wifi",
+  "title": {
+    "de": "WLAN",
+    "en": "Wi-Fi"
+  },
+  "answer": {
+    "de": "Das Gast-WLAN ist kostenlos. Den QR-Code und das Passwort finden Sie im Sofort-Zugriff.",
+    "en": "Guest Wi-Fi is free. Find the QR code and password in Instant Access."
+  },
+  "keywords": [
+    "Internet Netzwerk Passwort password network wireless"
+  ],
+  "category": "house",
+  "actions": [
+    {
+      "type": "page",
+      "target": "guestNow"
+    }
+  ],
+  "needsOwnerReview": false
+}

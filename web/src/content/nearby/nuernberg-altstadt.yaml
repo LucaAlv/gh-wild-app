@@ -1,0 +1,40 @@
+{
+  "name": {
+    "de": "Nürnberger Altstadt",
+    "en": "Nuremberg Old Town"
+  },
+  "subtitle": {
+    "de": "Kaiserburg, Hauptmarkt & Fachwerk",
+    "en": "Imperial Castle, Hauptmarkt & half-timbering"
+  },
+  "description": {
+    "de": "Vom Hauptmarkt führen kurze Wege zur Kaiserburg, an die Pegnitz und durch die historischen Gassen.",
+    "en": "From the Hauptmarkt, short walks lead to the Imperial Castle, the Pegnitz and historic lanes."
+  },
+  "latitude": 49.4542,
+  "longitude": 11.0771,
+  "categories": [
+    "shopping",
+    "food"
+  ],
+  "image": "nearby-02",
+  "travel": [
+    {
+      "minutes": 25,
+      "mode": "car"
+    },
+    {
+      "minutes": 35,
+      "mode": "transit",
+      "note": {
+        "de": "Bus nach Stein, dann U2/U3 bis Opernhaus oder Hauptbahnhof",
+        "en": "Bus to Stein, then U2/U3 to Opernhaus or Hauptbahnhof"
+      }
+    }
+  ],
+  "familyNote": {
+    "de": "Für einen ersten Besuch am Opernhaus aussteigen und durch die Altstadt bis zur Burg laufen – so geht es stetig bergauf statt bergab.",
+    "en": "For a first visit, get off at Opernhaus and walk through the old town to the castle—this keeps the route steadily uphill."
+  },
+  "website": "https://tourismus.nuernberg.de/"
+}

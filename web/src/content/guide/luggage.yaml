@@ -1,0 +1,22 @@
+{
+  "symbol": "suitcase.rolling",
+  "title": {
+    "de": "Gepäck aufbewahren",
+    "en": "Luggage storage"
+  },
+  "answer": {
+    "de": "Bitte fragen Sie uns direkt – wir helfen Ihnen gerne persönlich weiter.",
+    "en": "Please ask us directly—we will be happy to help in person."
+  },
+  "keywords": [
+    "Koffer Tasche früher später baggage bags suitcase storage"
+  ],
+  "category": "departure",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": true
+}

@@ -1,0 +1,19 @@
+{
+  "name": {
+    "de": "Dreibettzimmer",
+    "en": "Triple room"
+  },
+  "price": 115,
+  "occupancy": {
+    "de": "Für 3 Personen",
+    "en": "For 3 guests"
+  },
+  "description": {
+    "de": "Viel Platz für Familie, Freunde oder Kolleginnen und Kollegen – behaglich und praktisch zugleich.",
+    "en": "Plenty of room for family, friends or colleagues – welcoming and practical."
+  },
+  "images": [
+    "galerie-06",
+    "galerie-07"
+  ]
+}

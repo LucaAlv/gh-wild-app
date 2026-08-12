@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import { hrefFor, labels, navKeys } from '../lib/routes';
+import { imageAsset } from '../lib/images';
+import type { Locale } from '../lib/types';
+
+interface Props { locale: Locale; alternateHref: string; }
+const { locale, alternateHref } = Astro.props;
+const copy = labels[locale];
+---
+
+<header class="site-header">
+  <a class="brand" href={hrefFor('home', locale)} aria-label={locale === 'de' ? 'Gästehaus Wild – Startseite' : 'Gästehaus Wild – Home'}>
+    <Image class="brand-mark" src={imageAsset('crest')} alt="" width={84} height={84} />
+    <Image src={imageAsset('wordmark')} alt="Gästehaus Wild" width={224} />
+  </a>
+  <nav class="desktop-nav" aria-label={locale === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+    {navKeys.map((key) => <a href={hrefFor(key, locale)}>{copy[key as keyof typeof copy]}</a>)}
+  </nav>
+  <div class="header-actions">
+    <a class="language-link" href={alternateHref} lang={locale === 'de' ? 'en' : 'de'} hreflang={locale === 'de' ? 'en' : 'de'}>
+      {locale === 'de' ? 'EN' : 'DE'}
+    </a>
+    <a class="button compact" href={hrefFor('inquiry', locale)}>{copy.inquiry}</a>
+    <button class="menu-button" type="button" aria-label={locale === 'de' ? 'Menü öffnen' : 'Open menu'} aria-expanded="false" aria-controls="mobile-menu">☰</button>
+  </div>
+  <nav class="mobile-nav" id="mobile-menu" data-open="false" aria-label={locale === 'de' ? 'Mobile Navigation' : 'Mobile navigation'}>
+    {navKeys.map((key) => <a href={hrefFor(key, locale)}>{copy[key as keyof typeof copy]}</a>)}
+    <a href={hrefFor('guest', locale)}>{copy.guest}</a>
+    <a href={hrefFor('inquiry', locale)}>{copy.inquiry}</a>
+  </nav>
+</header>
+
+<script>
+  const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
+  const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu');
+  menuButton?.addEventListener('click', () => {
+    const open = menuButton.getAttribute('aria-expanded') !== 'true';
+    menuButton.setAttribute('aria-expanded', String(open));
+    mobileMenu?.setAttribute('data-open', String(open));
+    menuButton.textContent = open ? '×' : '☰';
+  });
+</script>

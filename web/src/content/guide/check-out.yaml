@@ -1,0 +1,17 @@
+{
+  "symbol": "clock.arrow.circlepath",
+  "title": {
+    "de": "Check-out",
+    "en": "Check-out"
+  },
+  "answer": {
+    "de": "Bitte geben Sie Ihr Zimmer am Abreisetag bis 11:00 Uhr frei.",
+    "en": "Please vacate your room by 11:00 am on departure day."
+  },
+  "keywords": [
+    "Abreise Auschecken Schlüssel departure leave time"
+  ],
+  "category": "departure",
+  "actions": [],
+  "needsOwnerReview": false
+}

@@ -1,0 +1,22 @@
+{
+  "symbol": "pawprint",
+  "title": {
+    "de": "Haustiere",
+    "en": "Pets"
+  },
+  "answer": {
+    "de": "Zwei- und Vierbeiner sind bei uns willkommen. Bitte stimmen Sie Ihren Aufenthalt mit Haustier vorab mit uns ab.",
+    "en": "Two- and four-legged guests are welcome. Please arrange stays with pets with us in advance."
+  },
+  "keywords": [
+    "Hund Katze Tiere dog cat animal"
+  ],
+  "category": "house",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": false
+}

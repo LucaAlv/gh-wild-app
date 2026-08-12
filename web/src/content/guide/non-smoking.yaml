@@ -1,0 +1,17 @@
+{
+  "symbol": "nosign",
+  "title": {
+    "de": "Rauchen",
+    "en": "Smoking"
+  },
+  "answer": {
+    "de": "Alle Zimmer sind Nichtraucherzimmer. Bitte rauchen Sie nicht im Haus.",
+    "en": "All rooms are non-smoking. Please do not smoke inside the guesthouse."
+  },
+  "keywords": [
+    "Zigarette Nichtraucher cigarette vape non-smoking"
+  ],
+  "category": "house",
+  "actions": [],
+  "needsOwnerReview": false
+}

@@ -1,0 +1,29 @@
+{
+  "destination": {
+    "de": "Nürnberg Hauptbahnhof",
+    "en": "Nuremberg Central Station"
+  },
+  "symbol": "train.side.front.car",
+  "durationSummary": {
+    "de": "ca. 25 Min.",
+    "en": "about 25 min"
+  },
+  "steps": [
+    {
+      "de": "Etwa 12 Minuten zum Bahnhof Unterasbach laufen.",
+      "en": "Walk about 12 minutes to Unterasbach station."
+    },
+    {
+      "de": "Mit der S4 Richtung Nürnberg Hauptbahnhof fahren.",
+      "en": "Take the S4 towards Nürnberg Hauptbahnhof."
+    },
+    {
+      "de": "Der Hauptbahnhof ist die Endstation; der Altstadtausgang führt Richtung Königstor.",
+      "en": "Hauptbahnhof is the final stop; use the old-town exit towards Königstor."
+    }
+  ],
+  "tip": {
+    "de": "Vor dem Losgehen die nächste Verbindung in der VGN-App prüfen – abends und am Wochenende ändern sich die Takte.",
+    "en": "Before leaving, check the next service in the VGN app—frequencies change in the evenings and at weekends."
+  }
+}

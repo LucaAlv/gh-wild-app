@@ -1,0 +1,22 @@
+{
+  "symbol": "thermometer.medium",
+  "title": {
+    "de": "Heizung",
+    "en": "Heating"
+  },
+  "answer": {
+    "de": "Bitte fragen Sie uns direkt – wir helfen Ihnen gerne persönlich weiter.",
+    "en": "Please ask us directly—we will be happy to help in person."
+  },
+  "keywords": [
+    "Heizkörper kalt warm Temperatur radiator cold temperature"
+  ],
+  "category": "room",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": true
+}

@@ -1,0 +1,35 @@
+{
+  "name": {
+    "de": "Burg Cadolzburg",
+    "en": "Cadolzburg Castle"
+  },
+  "subtitle": {
+    "de": "Mitmachmuseum in einer Hohenzollernburg",
+    "en": "Hands-on museum in a Hohenzollern castle"
+  },
+  "description": {
+    "de": "Die Ausstellung »HerrschaftsZeiten!« macht das Mittelalter in einer eindrucksvollen Burganlage interaktiv erlebbar.",
+    "en": "The ‘A Time of Rulers’ exhibition brings the Middle Ages to life inside an impressive castle complex."
+  },
+  "latitude": 49.4587,
+  "longitude": 10.8528,
+  "categories": [
+    "withKids",
+    "rainyDay"
+  ],
+  "travel": [
+    {
+      "minutes": 20,
+      "mode": "car"
+    }
+  ],
+  "openingHours": {
+    "de": "Montags meist geschlossen; aktuelle Zeiten prüfen",
+    "en": "Usually closed Mondays; check current hours"
+  },
+  "familyNote": {
+    "de": "Mehr Zeit einplanen als für ein klassisches Burgmuseum – viele Stationen wollen ausprobiert werden.",
+    "en": "Allow more time than for a traditional castle museum—there are many hands-on stations."
+  },
+  "website": "https://www.burg-cadolzburg.de/"
+}

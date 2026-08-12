@@ -1,0 +1,22 @@
+{
+  "symbol": "moon.stars",
+  "title": {
+    "de": "Späte Anreise",
+    "en": "Late arrival"
+  },
+  "answer": {
+    "de": "Sie kommen später? Rufen Sie uns kurz an – wir vereinbaren eine flexible Schlüsselübergabe.",
+    "en": "Arriving later? Give us a quick call and we will arrange a flexible key handover."
+  },
+  "keywords": [
+    "verspätet nachts später Schlüssel late night delayed"
+  ],
+  "category": "departure",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": false
+}

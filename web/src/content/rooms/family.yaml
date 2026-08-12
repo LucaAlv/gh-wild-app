@@ -1,0 +1,19 @@
+{
+  "name": {
+    "de": "Familienzimmer",
+    "en": "Family room"
+  },
+  "price": 110,
+  "occupancy": {
+    "de": "2 Erwachsene & 1 Kind bis 6 Jahre",
+    "en": "2 adults & 1 child up to age 6"
+  },
+  "description": {
+    "de": "Ein liebevoll eingerichtetes Zimmer für kleine Familien mit Kinderbett.",
+    "en": "A lovingly furnished room for a small family, with a child’s bed."
+  },
+  "images": [
+    "galerie-08",
+    "galerie-09"
+  ]
+}

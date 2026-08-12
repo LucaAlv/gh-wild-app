@@ -1,0 +1,17 @@
+{
+  "symbol": "cup.and.saucer",
+  "title": {
+    "de": "Kaffee & Wasserkocher",
+    "en": "Coffee & kettle"
+  },
+  "answer": {
+    "de": "In der Lobby stehen ein Wasserkocher und eine Kaffeemaschine bereit.",
+    "en": "A kettle and coffee machine are available in the lobby."
+  },
+  "keywords": [
+    "Tee Heisswasser tea hot water machine"
+  ],
+  "category": "house",
+  "actions": [],
+  "needsOwnerReview": false
+}

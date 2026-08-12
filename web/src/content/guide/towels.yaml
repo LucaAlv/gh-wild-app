@@ -1,0 +1,22 @@
+{
+  "symbol": "square.stack",
+  "title": {
+    "de": "Handtücher",
+    "en": "Towels"
+  },
+  "answer": {
+    "de": "Ausreichend Handtücher liegen im Zimmer bereit. Wenn Sie weitere benötigen, sprechen Sie uns gerne an.",
+    "en": "Plenty of towels are provided in your room. Please ask us if you need more."
+  },
+  "keywords": [
+    "Badetuch Dusche towel bathroom shower linen"
+  ],
+  "category": "room",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": false
+}

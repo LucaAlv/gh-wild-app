@@ -1,0 +1,20 @@
+{
+  "name": {
+    "de": "Doppelzimmer",
+    "en": "Double room"
+  },
+  "price": 90,
+  "occupancy": {
+    "de": "Für 2 Personen",
+    "en": "For 2 guests"
+  },
+  "description": {
+    "de": "Unsere Doppelzimmer verbinden den Charakter des historischen Hauses mit zeitgemäßem Komfort.",
+    "en": "Our double rooms combine the character of the historic house with modern comfort."
+  },
+  "images": [
+    "galerie-03",
+    "galerie-04",
+    "galerie-05"
+  ]
+}

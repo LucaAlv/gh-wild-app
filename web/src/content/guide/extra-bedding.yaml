@@ -1,0 +1,22 @@
+{
+  "symbol": "snowflake",
+  "title": {
+    "de": "Zusätzliche Kissen & Decken",
+    "en": "Extra pillows & blankets"
+  },
+  "answer": {
+    "de": "Zusätzliche Kissen und Wolldecken erhalten Sie gerne auf Nachfrage.",
+    "en": "Extra pillows and wool blankets are available on request."
+  },
+  "keywords": [
+    "Kopfkissen Bettdecke kalt pillow duvet bedding cold"
+  ],
+  "category": "room",
+  "actions": [
+    {
+      "type": "call",
+      "target": "tel:+49911996910"
+    }
+  ],
+  "needsOwnerReview": false
+}

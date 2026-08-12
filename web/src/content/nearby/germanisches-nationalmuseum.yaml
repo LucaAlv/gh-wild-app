@@ -1,0 +1,38 @@
+{
+  "name": {
+    "de": "Germanisches Nationalmuseum",
+    "en": "Germanisches Nationalmuseum"
+  },
+  "subtitle": {
+    "de": "Kunst und Kulturgeschichte",
+    "en": "Art and cultural history"
+  },
+  "description": {
+    "de": "Das große kulturgeschichtliche Museum zeigt Kunst und Alltagskultur von der Frühzeit bis in die Gegenwart.",
+    "en": "This major cultural-history museum covers art and everyday culture from early history to the present."
+  },
+  "latitude": 49.4482,
+  "longitude": 11.0755,
+  "categories": [
+    "rainyDay"
+  ],
+  "travel": [
+    {
+      "minutes": 24,
+      "mode": "car"
+    },
+    {
+      "minutes": 35,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Montags geschlossen",
+    "en": "Closed Mondays"
+  },
+  "familyNote": {
+    "de": "Das Haus ist riesig: lieber zwei Themen auswählen als alles schaffen wollen. Familienangebote vorher prüfen.",
+    "en": "The museum is vast: choose two themes instead of trying to see everything. Check family activities ahead."
+  },
+  "website": "https://www.gnm.de/"
+}

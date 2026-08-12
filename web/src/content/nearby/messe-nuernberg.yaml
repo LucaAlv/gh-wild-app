@@ -1,0 +1,46 @@
+{
+  "name": {
+    "de": "Messe Nürnberg",
+    "en": "Nuremberg Exhibition Centre"
+  },
+  "subtitle": {
+    "de": "Messegelände Langwasser",
+    "en": "Langwasser exhibition grounds"
+  },
+  "description": {
+    "de": "Das Messezentrum mit den Eingängen Mitte, Ost und NCC liegt im Südosten Nürnbergs.",
+    "en": "The exhibition centre, with Mitte and Ost entrances and the NCC, is in south-east Nuremberg."
+  },
+  "latitude": 49.4166,
+  "longitude": 11.1123,
+  "categories": [
+    "fair"
+  ],
+  "travel": [
+    {
+      "minutes": 25,
+      "mode": "car",
+      "note": {
+        "de": "über Frankenschnellweg und Südwesttangente",
+        "en": "via Frankenschnellweg and Südwesttangente"
+      }
+    },
+    {
+      "minutes": 45,
+      "mode": "transit",
+      "note": {
+        "de": "Bus nach Stein, dann U2 und U1 bis Messe",
+        "en": "Bus to Stein, then U2 and U1 to Messe"
+      }
+    }
+  ],
+  "openingHours": {
+    "de": "Je nach Veranstaltung",
+    "en": "Depends on the event"
+  },
+  "familyNote": {
+    "de": "An Messetagen am besten vor 7:40 Uhr losfahren. Danach werden Frankenschnellweg und Parkzufahrten schnell voll.",
+    "en": "On fair days, leave before 7:40 am. The Frankenschnellweg and car-park approaches fill quickly afterwards."
+  },
+  "website": "https://www.nuernbergmesse.de/"
+}

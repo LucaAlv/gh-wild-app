@@ -1,0 +1,13 @@
+{
+  "name": "Gästehaus Wild",
+  "short_name": "Gästehaus Wild",
+  "description": "Bilingual guest guide for Gästehaus Wild in Oberasbach",
+  "lang": "de",
+  "start_url": "/gast",
+  "display": "standalone",
+  "background_color": "#e8dfd0",
+  "theme_color": "#e8dfd0",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

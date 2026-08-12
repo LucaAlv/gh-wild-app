@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Deutsches Museum Nürnberg",
+    "en": "Deutsches Museum Nürnberg"
+  },
+  "subtitle": {
+    "de": "Das Zukunftsmuseum",
+    "en": "The Museum of the Future"
+  },
+  "description": {
+    "de": "Interaktive Ausstellungen zu Arbeit, Mobilität, Gesundheit und Technik der Zukunft im Augustinerhof.",
+    "en": "Interactive exhibitions on the future of work, mobility, health and technology in Augustinerhof."
+  },
+  "latitude": 49.4548,
+  "longitude": 11.0741,
+  "categories": [
+    "rainyDay",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 27,
+      "mode": "car"
+    },
+    {
+      "minutes": 40,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Montags geschlossen",
+    "en": "Closed Mondays"
+  },
+  "familyNote": {
+    "de": "Für ältere Kinder und Jugendliche besonders stark. Für alle interaktiven Stationen mindestens zwei Stunden einplanen.",
+    "en": "Especially good for older children and teenagers. Allow at least two hours for the interactive stations."
+  },
+  "website": "https://www.deutsches-museum.de/nuernberg"
+}

@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Kaiserburg Nürnberg",
+    "en": "Nuremberg Imperial Castle"
+  },
+  "subtitle": {
+    "de": "Burganlage über der Altstadt",
+    "en": "Castle complex above the old town"
+  },
+  "description": {
+    "de": "Wahrzeichen der Stadt mit Palas, Museum, Tiefem Brunnen und weitem Blick über Nürnbergs Dächer.",
+    "en": "The city landmark offers a palace, museum, deep well and wide views across Nuremberg’s rooftops."
+  },
+  "latitude": 49.4579,
+  "longitude": 11.075,
+  "categories": [
+    "rainyDay",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 28,
+      "mode": "car"
+    },
+    {
+      "minutes": 42,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Saisonal unterschiedliche Zeiten",
+    "en": "Hours vary by season"
+  },
+  "familyNote": {
+    "de": "Der Anstieg ist mit Kinderwagen machbar, aber steil. Der Burggarten ist eine schöne ruhige Pause.",
+    "en": "The climb is manageable with a pushchair but steep. The castle garden is a lovely quiet break."
+  },
+  "website": "https://www.kaiserburg-nuernberg.de/"
+}

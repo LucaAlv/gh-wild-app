@@ -1,0 +1,17 @@
+{
+  "symbol": "wind",
+  "title": {
+    "de": "Föhn",
+    "en": "Hair dryer"
+  },
+  "answer": {
+    "de": "Ein Föhn gehört zur Ausstattung Ihres Zimmers.",
+    "en": "A hair dryer is provided in your room."
+  },
+  "keywords": [
+    "Haare trocknen hairdryer blow dryer dry hair"
+  ],
+  "category": "room",
+  "actions": [],
+  "needsOwnerReview": false
+}

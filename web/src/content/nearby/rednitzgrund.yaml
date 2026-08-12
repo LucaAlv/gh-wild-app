@@ -1,0 +1,35 @@
+{
+  "name": {
+    "de": "Rednitzgrund",
+    "en": "Rednitz valley"
+  },
+  "subtitle": {
+    "de": "Ruhige Wege am Fluss",
+    "en": "Quiet riverside paths"
+  },
+  "description": {
+    "de": "Flache Wege entlang der Rednitz eignen sich für Spaziergänge und Radtouren zwischen Stein, Oberasbach und Fürth.",
+    "en": "Flat paths along the Rednitz are ideal for walks and bike rides between Stein, Oberasbach and Fürth."
+  },
+  "latitude": 49.4278,
+  "longitude": 11.001,
+  "categories": [
+    "nature",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 12,
+      "mode": "bike"
+    },
+    {
+      "minutes": 28,
+      "mode": "walk"
+    }
+  ],
+  "familyNote": {
+    "de": "Für eine entspannte Radrunde bestens geeignet. Nach längeren Regenfällen können einzelne Wege matschig sein.",
+    "en": "Excellent for an easy bike loop. Some paths can be muddy after prolonged rain."
+  },
+  "website": "https://www.oberasbach.de/leben-erleben/freizeit-sport-naherholung"
+}
