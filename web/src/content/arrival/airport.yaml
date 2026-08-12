@@ -1,0 +1,29 @@
+{
+  "destination": {
+    "de": "Flughafen Nürnberg",
+    "en": "Nuremberg Airport"
+  },
+  "symbol": "airplane",
+  "durationSummary": {
+    "de": "ca. 45–55 Min.",
+    "en": "about 45–55 min"
+  },
+  "steps": [
+    {
+      "de": "Zum Bahnhof Unterasbach laufen und die S4 Richtung Nürnberg Hauptbahnhof nehmen.",
+      "en": "Walk to Unterasbach station and take the S4 towards Nürnberg Hauptbahnhof."
+    },
+    {
+      "de": "Am Hauptbahnhof in die U2 Richtung Flughafen umsteigen.",
+      "en": "At Hauptbahnhof, change to U2 towards Flughafen."
+    },
+    {
+      "de": "Die U2 endet direkt am Flughafenterminal.",
+      "en": "The U2 terminates directly at the airport terminal."
+    }
+  ],
+  "tip": {
+    "de": "Mit großem Gepäck ist ein Taxi direkt ab dem Gästehaus deutlich bequemer; wir helfen gerne bei der Bestellung.",
+    "en": "With large luggage, a taxi from the guesthouse is much easier; we are happy to help arrange one."
+  }
+}

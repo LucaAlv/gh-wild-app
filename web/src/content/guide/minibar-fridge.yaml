@@ -1,0 +1,17 @@
+{
+  "symbol": "cabinet",
+  "title": {
+    "de": "Minibar & Kühlschrank",
+    "en": "Minibar & fridge"
+  },
+  "answer": {
+    "de": "Die leere Minibar in Ihrem Zimmer können Sie als Kühlschrank für eigene Lebensmittel und Getränke nutzen.",
+    "en": "The empty minibar in your room can be used as a fridge for your own food and drinks."
+  },
+  "keywords": [
+    "kühlen Getränke Lebensmittel refrigerator cool drinks food"
+  ],
+  "category": "room",
+  "actions": [],
+  "needsOwnerReview": false
+}

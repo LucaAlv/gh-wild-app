@@ -1,0 +1,22 @@
+{
+  "symbol": "bolt.car",
+  "title": {
+    "de": "Elektroauto laden",
+    "en": "EV charging"
+  },
+  "answer": {
+    "de": "Eine öffentliche Ladestation für Elektroautos befindet sich in der Nähe.",
+    "en": "A public electric-vehicle charging point is available nearby."
+  },
+  "keywords": [
+    "E-Auto Ladesäule Strom electric car charger charging"
+  ],
+  "category": "practical",
+  "actions": [
+    {
+      "type": "map",
+      "target": "E-Auto Ladestation in der Nähe von Gästehaus Wild Oberasbach"
+    }
+  ],
+  "needsOwnerReview": false
+}

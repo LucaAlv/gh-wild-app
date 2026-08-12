@@ -1,0 +1,33 @@
+{
+  "destination": {
+    "de": "Messe Nürnberg",
+    "en": "Nuremberg Exhibition Centre"
+  },
+  "symbol": "building.2",
+  "durationSummary": {
+    "de": "ca. 45 Min.",
+    "en": "about 45 min"
+  },
+  "steps": [
+    {
+      "de": "Etwa 12 Minuten zum Bahnhof Unterasbach laufen.",
+      "en": "Walk about 12 minutes to Unterasbach station."
+    },
+    {
+      "de": "Mit der S4 Richtung Nürnberg Hauptbahnhof fahren.",
+      "en": "Take the S4 towards Nürnberg Hauptbahnhof."
+    },
+    {
+      "de": "Am Hauptbahnhof in die U1 Richtung Langwasser Süd umsteigen.",
+      "en": "At Hauptbahnhof, change to U1 towards Langwasser Süd."
+    },
+    {
+      "de": "An der Haltestelle Messe aussteigen; den passenden Eingang auf dem Messeticket prüfen.",
+      "en": "Get off at Messe; check the entrance printed on your exhibition ticket."
+    }
+  ],
+  "tip": {
+    "de": "An Messetagen etwas Puffer für volle Züge und den Weg vom Bahnsteig zum Eingang einplanen.",
+    "en": "On exhibition days, allow extra time for busy trains and the walk from the platform to your entrance."
+  }
+}

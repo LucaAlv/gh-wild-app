@@ -1,0 +1,22 @@
+{
+  "symbol": "cup.and.saucer.fill",
+  "title": {
+    "de": "Frühstück",
+    "en": "Breakfast"
+  },
+  "answer": {
+    "de": "Montag bis Samstag von 7:00 bis 10:00 Uhr, sonntags von 8:00 bis 10:00 Uhr. Bitte teilen Sie uns Allergien mit.",
+    "en": "Monday to Saturday from 7:00 to 10:00 am, Sundays from 8:00 to 10:00 am. Please tell us about any allergies."
+  },
+  "keywords": [
+    "Frühstückszeit Allergie Gluten Laktose morning food allergy"
+  ],
+  "category": "food",
+  "actions": [
+    {
+      "type": "page",
+      "target": "breakfast"
+    }
+  ],
+  "needsOwnerReview": false
+}

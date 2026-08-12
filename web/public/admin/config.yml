@@ -1,0 +1,110 @@
+locale: de
+backend:
+  name: github
+  repo: LucaAlv/gh-wild-app
+  branch: main
+  base_url: https://www.gaestehaus-wild.com
+  auth_endpoint: api/auth
+
+media_folder: src/assets/images/uploads
+public_folder: /src/assets/images/uploads
+
+i18n:
+  structure: single_file
+  locales: [de, en]
+  default_locale: de
+
+collections:
+  - name: pages
+    label: Seiten
+    folder: src/content/pages
+    extension: yaml
+    format: yaml
+    create: false
+    i18n: true
+    fields:
+      - { label: Titel, name: title, widget: string, i18n: true }
+      - { label: Kleine Überschrift, name: eyebrow, widget: string, required: false, i18n: true }
+      - { label: Einleitung, name: intro, widget: text, i18n: true }
+      - { label: Text, name: body, widget: text, required: false, i18n: true }
+      - { label: Bildname, name: image, widget: string, required: false, i18n: duplicate }
+
+  - name: rooms
+    label: Zimmer
+    folder: src/content/rooms
+    extension: yaml
+    format: yaml
+    create: false
+    i18n: true
+    fields:
+      - { label: Name, name: name, widget: string, i18n: true }
+      - { label: Preis ab, name: price, widget: number, value_type: int, i18n: duplicate }
+      - { label: Belegung, name: occupancy, widget: string, i18n: true }
+      - { label: Beschreibung, name: description, widget: text, i18n: true }
+      - { label: Bilder, name: images, widget: list, i18n: duplicate }
+
+  - name: guide
+    label: Gästemappe A–Z
+    folder: src/content/guide
+    extension: yaml
+    format: yaml
+    create: true
+    identifier_field: title.de
+    slug: "{{slug}}"
+    i18n: true
+    fields:
+      - { label: Symbol, name: symbol, widget: string, i18n: duplicate }
+      - { label: Titel, name: title, widget: string, i18n: true }
+      - { label: Antwort, name: answer, widget: text, i18n: true }
+      - { label: Suchbegriffe, name: keywords, widget: list, i18n: duplicate }
+      - label: Kategorie
+        name: category
+        widget: select
+        options: [emergency, room, house, food, practical, departure]
+        i18n: duplicate
+      - { label: Aktionen, name: actions, widget: list, required: false, i18n: duplicate, fields: [{ label: Typ, name: type, widget: select, options: [call, map, link, page] }, { label: Ziel, name: target, widget: string }] }
+      - { label: Muss von Familie geprüft werden, name: needsOwnerReview, widget: boolean, default: false, i18n: duplicate }
+
+  - name: nearby
+    label: In der Nähe
+    folder: src/content/nearby
+    extension: yaml
+    format: yaml
+    create: true
+    identifier_field: name.de
+    i18n: true
+    fields:
+      - { label: Name, name: name, widget: string, i18n: true }
+      - { label: Unterzeile, name: subtitle, widget: string, i18n: true }
+      - { label: Beschreibung, name: description, widget: text, i18n: true }
+      - { label: Breitengrad, name: latitude, widget: number, value_type: float, i18n: duplicate }
+      - { label: Längengrad, name: longitude, widget: number, value_type: float, i18n: duplicate }
+      - { label: Kategorien, name: categories, widget: select, multiple: true, options: [food, withKids, fair, rainyDay, shopping, nature], i18n: duplicate }
+      - { label: Bildname, name: image, widget: string, required: false, i18n: duplicate }
+      - { label: Wege, name: travel, widget: list, i18n: duplicate, fields: [{ label: Minuten, name: minutes, widget: number, value_type: int }, { label: Art, name: mode, widget: select, options: [walk, bike, car, transit] }] }
+      - { label: Öffnungszeiten, name: openingHours, widget: string, required: false, i18n: true }
+      - { label: Preishinweis, name: priceHint, widget: string, required: false, i18n: true }
+      - { label: Familientipp, name: familyNote, widget: text, required: false, i18n: true }
+      - { label: Website, name: website, widget: string, required: false, i18n: duplicate }
+
+  - name: settings
+    label: Einstellungen
+    files:
+      - name: contact
+        label: Kontakt
+        file: src/content/settings/contact.yaml
+        fields:
+          - { label: Telefon, name: phoneDisplay, widget: string }
+          - { label: Telefon-Link, name: phoneURL, widget: string }
+          - { label: E-Mail, name: email, widget: string }
+          - { label: Adresse, name: address, widget: object, fields: [{ label: Deutsch, name: de, widget: text }, { label: Englisch, name: en, widget: text }] }
+          - { label: Breitengrad, name: latitude, widget: number, value_type: float }
+          - { label: Längengrad, name: longitude, widget: number, value_type: float }
+      - name: breakfast
+        label: Frühstück
+        file: src/content/settings/breakfast.yaml
+        fields:
+          - { label: Montag–Samstag, name: weekday, widget: object, fields: [{ label: Beginn, name: start, widget: string }, { label: Ende, name: end, widget: string }] }
+          - { label: Sonntag, name: sunday, widget: object, fields: [{ label: Beginn, name: start, widget: string }, { label: Ende, name: end, widget: string }] }
+          - { label: Preis, name: price, widget: number, value_type: int }
+          - { label: Feiertagsregel offen, name: holidayRuleNeedsOwnerReview, widget: boolean }

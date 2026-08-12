@@ -1,0 +1,22 @@
+{
+  "symbol": "parkingsign",
+  "title": {
+    "de": "Parken",
+    "en": "Parking"
+  },
+  "answer": {
+    "de": "Kostenfreie Parkplätze finden Sie direkt vor dem Haus.",
+    "en": "Free parking is available directly outside the guesthouse."
+  },
+  "keywords": [
+    "Auto Stellplatz kostenlos car space free"
+  ],
+  "category": "practical",
+  "actions": [
+    {
+      "type": "map",
+      "target": "Gästehaus Wild Jahnstraße 77 Oberasbach"
+    }
+  ],
+  "needsOwnerReview": false
+}

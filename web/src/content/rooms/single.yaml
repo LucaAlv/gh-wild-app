@@ -1,0 +1,19 @@
+{
+  "name": {
+    "de": "Einzelzimmer",
+    "en": "Single room"
+  },
+  "price": 70,
+  "occupancy": {
+    "de": "Für 1 Person",
+    "en": "For 1 guest"
+  },
+  "description": {
+    "de": "Ein gemütlicher Rückzugsort für Alleinreisende – individuell eingerichtet und mit allem ausgestattet, was Sie für einen angenehmen Aufenthalt benötigen.",
+    "en": "A cosy retreat for solo travellers, individually furnished with everything needed for a comfortable stay."
+  },
+  "images": [
+    "galerie-01",
+    "galerie-02"
+  ]
+}

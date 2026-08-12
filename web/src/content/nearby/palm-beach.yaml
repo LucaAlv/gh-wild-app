@@ -1,0 +1,44 @@
+{
+  "name": {
+    "de": "Kristall Palm Beach",
+    "en": "Kristall Palm Beach"
+  },
+  "subtitle": {
+    "de": "Therme, Rutschen & Sauna",
+    "en": "Thermal baths, slides & sauna"
+  },
+  "description": {
+    "de": "Freizeitbad und Therme in Stein mit Rutschenwelt, Innen- und Außenbecken sowie großem Saunabereich.",
+    "en": "Leisure and thermal baths in Stein with waterslides, indoor and outdoor pools and a large sauna area."
+  },
+  "latitude": 49.4078,
+  "longitude": 11.0068,
+  "categories": [
+    "withKids",
+    "rainyDay"
+  ],
+  "image": "nearby-01",
+  "travel": [
+    {
+      "minutes": 8,
+      "mode": "car"
+    },
+    {
+      "minutes": 20,
+      "mode": "bike"
+    }
+  ],
+  "openingHours": {
+    "de": "Täglich; aktuelle Zeiten online prüfen",
+    "en": "Daily; check current hours online"
+  },
+  "priceHint": {
+    "de": "Verschiedene Zeit- und Saunatarife",
+    "en": "Various timed and sauna rates"
+  },
+  "familyNote": {
+    "de": "Für Regentage sehr beliebt. In Ferienzeiten lohnt es sich, früh zu starten und die Auslastung online zu prüfen.",
+    "en": "Very popular on rainy days. During school holidays, go early and check capacity online."
+  },
+  "website": "https://palm-beach.de/"
+}

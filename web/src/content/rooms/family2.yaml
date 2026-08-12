@@ -1,0 +1,19 @@
+{
+  "name": {
+    "de": "Familienzimmer 2",
+    "en": "Large family room"
+  },
+  "price": 120,
+  "occupancy": {
+    "de": "3 Erwachsene & 1 Kind bis 6 Jahre oder 2 Erwachsene, 1 Kind ab 7 & 1 Kind bis 6 Jahre",
+    "en": "3 adults & 1 child up to age 6, or 2 adults, 1 child aged 7+ & 1 child up to age 6"
+  },
+  "description": {
+    "de": "Unsere größere Familienvariante bietet flexible Schlafmöglichkeiten für Ihren gemeinsamen Aufenthalt.",
+    "en": "Our larger family option offers flexible sleeping arrangements for your stay together."
+  },
+  "images": [
+    "galerie-10",
+    "galerie-11"
+  ]
+}

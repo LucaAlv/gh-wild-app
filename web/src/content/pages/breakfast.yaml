@@ -1,0 +1,10 @@
+{
+  "title": { "de": "Frühstück", "en": "Breakfast" },
+  "eyebrow": { "de": "Ein guter Start", "en": "A good start" },
+  "intro": { "de": "Frisch, persönlich und ganz entspannt", "en": "Fresh, personal and unhurried" },
+  "body": {
+    "de": "Montag bis Samstag von 7:00 bis 10:00 Uhr, sonntags von 8:00 bis 10:00 Uhr. Freuen Sie sich auf frische Brötchen, warme und kalte Getränke und kleine Leckereien. Frühstück kostet 14 € pro Person. Bitte informieren Sie uns über Unverträglichkeiten oder Allergien – wir kümmern uns gerne darum.",
+    "en": "Monday to Saturday from 7:00 to 10:00 am, Sundays from 8:00 to 10:00 am. Fresh rolls, hot and cold drinks and little treats await you. Breakfast is €14 per person. Please tell us about intolerances or allergies—we will be happy to accommodate you."
+  },
+  "image": "breakfast"
+}

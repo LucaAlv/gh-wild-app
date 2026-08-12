@@ -1,0 +1,14 @@
+{
+  "title": { "de": "Sonstige Leistungen", "en": "Other services" },
+  "eyebrow": { "de": "Persönlich für Sie da", "en": "Here for you" },
+  "intro": { "de": "Ein würdevoller Rahmen für kleine Trauergesellschaften", "en": "A dignified setting for small funeral gatherings" },
+  "body": {
+    "de": "Ab 15 Personen richten wir in unserem barrierefrei zugänglichen Gastraum Trauerfeiern für bis zu 35 Personen aus. Der Friedhof Unterasbach ist fußläufig erreichbar, kostenfreie Parkplätze liegen direkt vor der Tür. Eigene Dekoration ist möglich – auf Wunsch übernehmen wir sie für Sie.",
+    "en": "For groups from 15 people, our accessible dining room offers a dignified setting for funeral receptions of up to 35 guests. Unterasbach cemetery is within walking distance and free parking is directly outside. You may bring your own decorations, or we can arrange them for you."
+  },
+  "options": [
+    { "de": "Belegte Brote", "en": "Open sandwiches" },
+    { "de": "Kaffee und Kuchen", "en": "Coffee and cake" },
+    { "de": "Ein einheitliches Essen nach Wunsch", "en": "A set meal of your choice" }
+  ]
+}

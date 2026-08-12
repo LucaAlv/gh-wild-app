@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Städtisches Museum Zirndorf",
+    "en": "Zirndorf Municipal Museum"
+  },
+  "subtitle": {
+    "de": "Blechspielzeug & Stadtgeschichte",
+    "en": "Tin toys & local history"
+  },
+  "description": {
+    "de": "Ein kleines Museum in der Zirndorfer Altstadt über die örtliche Spielzeugindustrie und die Geschichte der Stadt.",
+    "en": "A small old-town museum about Zirndorf’s toy industry and local history."
+  },
+  "latitude": 49.4425,
+  "longitude": 10.9542,
+  "categories": [
+    "rainyDay",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 10,
+      "mode": "car"
+    },
+    {
+      "minutes": 28,
+      "mode": "bike"
+    }
+  ],
+  "openingHours": {
+    "de": "Begrenzte Öffnungstage – unbedingt vorab prüfen",
+    "en": "Limited opening days—please check ahead"
+  },
+  "familyNote": {
+    "de": "Überschaubar und deshalb gut für ein kurzes Regenfenster; danach passt ein Altstadtbummel.",
+    "en": "Compact and ideal for a short spell of rain; pair it with a stroll through the old town."
+  },
+  "website": "https://www.zirndorf.de/museum"
+}

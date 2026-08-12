@@ -1,0 +1,10 @@
+{
+  "title": { "de": "Garten & Terrasse", "en": "Garden & terrace" },
+  "eyebrow": { "de": "Draußen zuhause", "en": "At home outdoors" },
+  "intro": { "de": "Ein ruhiger Platz hinter dem Haus", "en": "A peaceful place behind the house" },
+  "body": {
+    "de": "In den Sommermonaten steht Ihnen unsere Terrasse hinter dem Haus zur Verfügung. Gerne servieren wir Ihnen je nach Verfügbarkeit ein kühles Getränk. Mitgebrachte Speisen und Getränke dürfen verzehrt werden. Wenn Sie mit dem Fahrrad anreisen, können Sie Ihr Rad hier sicher und unzugänglich abstellen.",
+    "en": "During the summer months, our terrace behind the house is open to you. Subject to availability, we will be happy to serve you a cool drink, and you may enjoy food and drinks you have brought along. Guests arriving by bicycle can store their bikes securely here."
+  },
+  "image": "garden"
+}

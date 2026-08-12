@@ -1,0 +1,43 @@
+{
+  "name": {
+    "de": "PLAYMOBIL-FunPark",
+    "en": "PLAYMOBIL FunPark"
+  },
+  "subtitle": {
+    "de": "Spielen, klettern und entdecken",
+    "en": "Play, climb and explore"
+  },
+  "description": {
+    "de": "Großzügiger Aktivpark in Zirndorf mit PLAYMOBIL-Welten, Wasserspielplatz und überdachtem Bereich.",
+    "en": "A large activity park in Zirndorf with PLAYMOBIL worlds, a water playground and an indoor area."
+  },
+  "latitude": 49.4307,
+  "longitude": 10.941,
+  "categories": [
+    "withKids"
+  ],
+  "image": "nearby-03",
+  "travel": [
+    {
+      "minutes": 10,
+      "mode": "car"
+    },
+    {
+      "minutes": 22,
+      "mode": "bike"
+    }
+  ],
+  "openingHours": {
+    "de": "Saisonal; Kalendertag vorab online prüfen",
+    "en": "Seasonal; check your date online in advance"
+  },
+  "priceHint": {
+    "de": "Online-Tickets sind oft günstiger",
+    "en": "Online tickets are often cheaper"
+  },
+  "familyNote": {
+    "de": "Badesachen und Wechselkleidung einpacken – der Wasserspielplatz gewinnt fast immer.",
+    "en": "Pack swimwear and spare clothes—the water playground almost always wins."
+  },
+  "website": "https://www.playmobil-funpark.de/"
+}

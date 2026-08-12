@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Fürther Freiheit & Neue Mitte",
+    "en": "Fürther Freiheit & Neue Mitte"
+  },
+  "subtitle": {
+    "de": "Einkaufen in Fürths Innenstadt",
+    "en": "Shopping in central Fürth"
+  },
+  "description": {
+    "de": "Fußgängerzone, Wochenmarkt und Einkaufszentrum liegen rund um die Fürther Freiheit nah beieinander.",
+    "en": "The pedestrian zone, weekly market and shopping centre cluster around Fürther Freiheit."
+  },
+  "latitude": 49.475,
+  "longitude": 10.9891,
+  "categories": [
+    "shopping",
+    "food"
+  ],
+  "travel": [
+    {
+      "minutes": 18,
+      "mode": "car"
+    },
+    {
+      "minutes": 38,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Geschäfte meist Montag bis Samstag",
+    "en": "Shops generally Monday to Saturday"
+  },
+  "familyNote": {
+    "de": "Fürth ist kompakter als Nürnberg und für einen entspannten Einkaufsbummel oft angenehmer.",
+    "en": "Fürth is more compact than Nuremberg and often more relaxed for a shopping stroll."
+  },
+  "website": "https://www.fuerth.de/"
+}

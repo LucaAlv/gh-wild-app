@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Faber-Castell Schloss & Museum",
+    "en": "Faber-Castell Castle & Museum"
+  },
+  "subtitle": {
+    "de": "Industriekultur in Stein",
+    "en": "Industrial heritage in Stein"
+  },
+  "description": {
+    "de": "Schloss, historische Fertigung und Museum erzählen die Geschichte der bekannten Stifte aus Stein.",
+    "en": "The castle, historic production rooms and museum tell the story of Stein’s famous pencils."
+  },
+  "latitude": 49.4062,
+  "longitude": 11.0137,
+  "categories": [
+    "rainyDay",
+    "shopping"
+  ],
+  "travel": [
+    {
+      "minutes": 10,
+      "mode": "car"
+    },
+    {
+      "minutes": 24,
+      "mode": "bike"
+    }
+  ],
+  "openingHours": {
+    "de": "Besichtigung meist nur mit gebuchter Führung",
+    "en": "Visits generally require a pre-booked tour"
+  },
+  "familyNote": {
+    "de": "Nicht spontan losfahren: Führungen und Museumstage unbedingt vorher prüfen und buchen.",
+    "en": "Do not set off spontaneously: check and book tours and museum days in advance."
+  },
+  "website": "https://www.faber-castell.de/corporate/faber-castell-erleben"
+}

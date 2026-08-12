@@ -1,0 +1,17 @@
+{
+  "symbol": "lock.shield",
+  "title": {
+    "de": "Safe & Rauchmelder",
+    "en": "Safe & smoke detector"
+  },
+  "answer": {
+    "de": "Ihr Zimmer ist mit einem Safe und einem Rauchmelder ausgestattet.",
+    "en": "Your room is equipped with a safe and smoke detector."
+  },
+  "keywords": [
+    "Wertsachen Sicherheit Feuer valuables security fire alarm"
+  ],
+  "category": "room",
+  "actions": [],
+  "needsOwnerReview": false
+}

@@ -1,0 +1,22 @@
+{
+  "symbol": "leaf",
+  "title": {
+    "de": "Naturschutzgebiet Hainberg",
+    "en": "Hainberg nature reserve"
+  },
+  "answer": {
+    "de": "Das Naturschutzgebiet Hainberg erreichen Sie in etwa zwei Minuten zu Fuß.",
+    "en": "The Hainberg nature reserve is about a two-minute walk away."
+  },
+  "keywords": [
+    "Spaziergang Natur laufen walk outdoors nature reserve"
+  ],
+  "category": "practical",
+  "actions": [
+    {
+      "type": "map",
+      "target": "Naturschutzgebiet Hainberg Oberasbach"
+    }
+  ],
+  "needsOwnerReview": false
+}

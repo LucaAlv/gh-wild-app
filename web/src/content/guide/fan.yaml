@@ -1,0 +1,17 @@
+{
+  "symbol": "fan",
+  "title": {
+    "de": "Ventilator",
+    "en": "Fan"
+  },
+  "answer": {
+    "de": "Im Sommer steht in Ihrem Zimmer ein Ventilator bereit.",
+    "en": "A fan is provided in your room during the summer."
+  },
+  "keywords": [
+    "heiss warm Sommer cooling hot"
+  ],
+  "category": "room",
+  "actions": [],
+  "needsOwnerReview": false
+}

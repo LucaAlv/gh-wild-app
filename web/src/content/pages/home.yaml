@@ -1,0 +1,16 @@
+{
+  "title": { "de": "Willkommen im Gästehaus Wild", "en": "Welcome to Gästehaus Wild" },
+  "eyebrow": { "de": "Familiengeführt seit 1990", "en": "Family-run since 1990" },
+  "intro": { "de": "Ankommen. Durchatmen. Zuhause fühlen.", "en": "Arrive. Unwind. Feel at home." },
+  "body": {
+    "de": "Seit 1990 begrüßen wir, drei Generationen der Familie Wild, Gäste in unserem über 300 Jahre alten Fachwerkhaus. Jedes Zimmer ist mit Liebe zum Detail eingerichtet und so einzigartig wie die alten Grundmauern unseres Hauses.",
+    "en": "Since 1990, three generations of the Wild family have welcomed guests to our 300-year-old half-timbered house. Every room is furnished with care and is as individual as the historic walls around it."
+  },
+  "testimonials": [
+    {
+      "de": "Wir haben unseren Aufenthalt im Gästehaus Wild sehr genossen. Die Gastfreundschaft und die gemütliche Atmosphäre haben uns begeistert.",
+      "en": "We thoroughly enjoyed our stay at Gästehaus Wild. The hospitality and cosy atmosphere delighted us."
+    }
+  ],
+  "image": "galerie-25"
+}

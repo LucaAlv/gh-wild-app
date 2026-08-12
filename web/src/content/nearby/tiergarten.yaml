@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Tiergarten Nürnberg",
+    "en": "Nuremberg Zoo"
+  },
+  "subtitle": {
+    "de": "Landschaftszoo mit Delphinlagune",
+    "en": "Landscape zoo with dolphin lagoon"
+  },
+  "description": {
+    "de": "Weitläufiger Tiergarten im Reichswald mit Felsenlandschaft, Aquapark, Manatihaus und Bionicum.",
+    "en": "A spacious zoo in the Reichswald with rocky landscapes, Aquapark, manatee house and Bionicum."
+  },
+  "latitude": 49.4498,
+  "longitude": 11.1465,
+  "categories": [
+    "withKids",
+    "nature"
+  ],
+  "travel": [
+    {
+      "minutes": 35,
+      "mode": "car"
+    },
+    {
+      "minutes": 55,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Täglich; Schließzeit saisonabhängig",
+    "en": "Daily; closing time varies by season"
+  },
+  "familyNote": {
+    "de": "Der Tiergarten ist sehr hügelig und groß – bequeme Schuhe, Wasser und einen halben bis ganzen Tag einplanen.",
+    "en": "The zoo is large and very hilly—wear comfortable shoes, bring water and allow half to a full day."
+  },
+  "website": "https://tiergarten.nuernberg.de/"
+}

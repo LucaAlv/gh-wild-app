@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Gasthof Kettler",
+    "en": "Gasthof Kettler"
+  },
+  "subtitle": {
+    "de": "Fränkische Küche mit Biergarten",
+    "en": "Franconian food and beer garden"
+  },
+  "description": {
+    "de": "Ein klassischer Oberasbacher Gasthof für regionale Küche und einen unkomplizierten Abend in der Nähe.",
+    "en": "A classic Oberasbach inn for regional food and an easy evening close by."
+  },
+  "latitude": 49.4318,
+  "longitude": 10.971,
+  "categories": [
+    "food"
+  ],
+  "travel": [
+    {
+      "minutes": 6,
+      "mode": "car"
+    },
+    {
+      "minutes": 24,
+      "mode": "walk"
+    }
+  ],
+  "openingHours": {
+    "de": "Öffnungstage bitte vorab prüfen",
+    "en": "Please check opening days before visiting"
+  },
+  "familyNote": {
+    "de": "Gerade am Wochenende empfehlen wir, kurz anzurufen und einen Tisch zu reservieren.",
+    "en": "At weekends in particular, we recommend calling ahead to reserve a table."
+  },
+  "website": "https://www.gasthof-kettler.de/",
+  "phone": "+49911692210"
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "bicycle",
+  "title": {
+    "de": "Fahrrad abstellen",
+    "en": "Bicycle storage"
+  },
+  "answer": {
+    "de": "Hinter dem Haus können Sie Ihr Fahrrad sicher und unzugänglich abstellen.",
+    "en": "You can store your bicycle securely behind the guesthouse, out of public reach."
+  },
+  "keywords": [
+    "Rad E-Bike Lagerung cycle bike storage"
+  ],
+  "category": "house",
+  "actions": [],
+  "needsOwnerReview": false
+}

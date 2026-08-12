@@ -1,0 +1,35 @@
+{
+  "name": {
+    "de": "Alte Veste",
+    "en": "Alte Veste"
+  },
+  "subtitle": {
+    "de": "Waldspaziergang mit Aussichtsturm",
+    "en": "Woodland walk and lookout tower"
+  },
+  "description": {
+    "de": "Bewaldeter Höhenzug zwischen Zirndorf und Fürth mit Wegen, Aussichtsturm und Spuren aus dem Dreißigjährigen Krieg.",
+    "en": "A wooded ridge between Zirndorf and Fürth with walking trails, a lookout tower and Thirty Years’ War history."
+  },
+  "latitude": 49.451,
+  "longitude": 10.9663,
+  "categories": [
+    "nature",
+    "withKids"
+  ],
+  "travel": [
+    {
+      "minutes": 10,
+      "mode": "car"
+    },
+    {
+      "minutes": 27,
+      "mode": "bike"
+    }
+  ],
+  "familyNote": {
+    "de": "Der Turm ist ein schönes Ziel, aber nicht immer geöffnet. Der Waldspaziergang lohnt sich trotzdem.",
+    "en": "The tower is a lovely goal but is not always open. The woodland walk is still worthwhile."
+  },
+  "website": "https://www.zirndorf-tourismus.de/"
+}

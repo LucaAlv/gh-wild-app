@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { hrefFor } from '../lib/routes';
+import { imageAsset } from '../lib/images';
+import type { Locale } from '../lib/types';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const de = locale === 'de';
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div class="footer-brand">
+      <Image src={imageAsset('wordmark')} alt="Gästehaus Wild" width={360} />
+      <p>{de ? 'Ankommen. Durchatmen. Zuhause fühlen.' : 'Arrive. Unwind. Feel at home.'}</p>
+    </div>
+    <div class="footer-links">
+      <h3>{de ? 'Besuchen' : 'Visit'}</h3>
+      <span>Jahnstraße 77</span>
+      <span>90522 Oberasbach</span>
+      <a href="tel:+49911996910">{de ? '0911 996910' : '+49 911 996910'}</a>
+      <a href="mailto:info@gaestehaus-wild.com">info@gaestehaus-wild.com</a>
+    </div>
+    <div class="footer-links">
+      <h3>{de ? 'Information' : 'Information'}</h3>
+      <a href={hrefFor('about', locale)}>{de ? 'Über uns' : 'About us'}</a>
+      <a href={hrefFor('arrival', locale)}>{de ? 'Anreise' : 'Getting here'}</a>
+      <a href={hrefFor('impressum', locale)}>{de ? 'Impressum' : 'Legal notice'}</a>
+      <a href={hrefFor('datenschutz', locale)}>{de ? 'Datenschutz' : 'Privacy'}</a>
+      <a href={hrefFor('agb', locale)}>{de ? 'AGB' : 'Terms'}</a>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>© {new Date().getFullYear()} Gästehaus Wild</span>
+    <span>{de ? 'Familiengeführt in Oberasbach' : 'Family-run in Oberasbach'}</span>
+  </div>
+</footer>

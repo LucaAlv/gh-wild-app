@@ -1,0 +1,22 @@
+{
+  "symbol": "birthday.cake",
+  "title": {
+    "de": "Bäckerei",
+    "en": "Bakery"
+  },
+  "answer": {
+    "de": "Bitte fragen Sie uns direkt – wir helfen Ihnen gerne persönlich weiter.",
+    "en": "Please ask us directly—we will be happy to help in person."
+  },
+  "keywords": [
+    "Brötchen Brot Kuchen bread rolls cake breakfast"
+  ],
+  "category": "food",
+  "actions": [
+    {
+      "type": "map",
+      "target": "Bäckerei in der Nähe von Gästehaus Wild Oberasbach"
+    }
+  ],
+  "needsOwnerReview": true
+}

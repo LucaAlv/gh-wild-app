@@ -1,0 +1,39 @@
+{
+  "name": {
+    "de": "Franken-Center",
+    "en": "Franken-Center"
+  },
+  "subtitle": {
+    "de": "Einkaufszentrum in Langwasser",
+    "en": "Shopping centre in Langwasser"
+  },
+  "description": {
+    "de": "Großes überdachtes Einkaufszentrum mit vielen Geschäften, Gastronomie und direktem U-Bahn-Anschluss.",
+    "en": "A large covered shopping centre with many shops, food options and a direct underground connection."
+  },
+  "latitude": 49.4033,
+  "longitude": 11.1344,
+  "categories": [
+    "shopping",
+    "rainyDay"
+  ],
+  "travel": [
+    {
+      "minutes": 25,
+      "mode": "car"
+    },
+    {
+      "minutes": 48,
+      "mode": "transit"
+    }
+  ],
+  "openingHours": {
+    "de": "Geschäfte meist Montag bis Samstag",
+    "en": "Shops generally Monday to Saturday"
+  },
+  "familyNote": {
+    "de": "Praktisch mit einem Messetag zu verbinden. Sonntags bleiben die Geschäfte in der Regel geschlossen.",
+    "en": "Easy to combine with an exhibition day. Shops are generally closed on Sundays."
+  },
+  "website": "https://www.franken-center-nuernberg.de/"
+}

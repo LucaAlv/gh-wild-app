@@ -1,0 +1,17 @@
+{
+  "symbol": "bed.double",
+  "title": {
+    "de": "Höhenverstellbare Kopfteile",
+    "en": "Adjustable headboards"
+  },
+  "answer": {
+    "de": "Die Kopfteile der Betten lassen sich für eine bequemere Sitz- oder Schlafposition verstellen.",
+    "en": "The bed headboards can be adjusted for a more comfortable sitting or sleeping position."
+  },
+  "keywords": [
+    "Bett Kopfteil schlafen bed sleep"
+  ],
+  "category": "room",
+  "actions": [],
+  "needsOwnerReview": false
+}
