@@ -1,16 +1,13 @@
 {
-  "title": { "de": "Willkommen im Gästehaus Wild", "en": "Welcome to Gästehaus Wild" },
+  "title": { "de": "Herzlich willkommen", "en": "Welcome" },
   "eyebrow": { "de": "Familiengeführt seit 1990", "en": "Family-run since 1990" },
-  "intro": { "de": "Ankommen. Durchatmen. Zuhause fühlen.", "en": "Arrive. Unwind. Feel at home." },
-  "body": {
-    "de": "Seit 1990 begrüßen wir, drei Generationen der Familie Wild, Gäste in unserem über 300 Jahre alten Fachwerkhaus. Jedes Zimmer ist mit Liebe zum Detail eingerichtet und so einzigartig wie die alten Grundmauern unseres Hauses.",
-    "en": "Since 1990, three generations of the Wild family have welcomed guests to our 300-year-old half-timbered house. Every room is furnished with care and is as individual as the historic walls around it."
+  "intro": {
+    "de": "Ein familiengeführtes Gästehaus in einem über 300 Jahre alten Fachwerkhaus – ruhig in Oberasbach, wenige Minuten von Nürnberg und der Messe.",
+    "en": "A family-run guesthouse in a 300-year-old half-timbered house – quietly located in Oberasbach, minutes from Nuremberg and the exhibition centre."
   },
-  "testimonials": [
-    {
-      "de": "Wir haben unseren Aufenthalt im Gästehaus Wild sehr genossen. Die Gastfreundschaft und die gemütliche Atmosphäre haben uns begeistert.",
-      "en": "We thoroughly enjoyed our stay at Gästehaus Wild. The hospitality and cosy atmosphere delighted us."
-    }
-  ],
-  "image": "galerie-25"
+  "body": {
+    "de": "Drei Generationen der Familie Wild empfangen hier Gäste. 16 Zimmer, jedes anders geschnitten, alle mit eigenem Bad. Frühstück gibt es im alten Gastraum, im Sommer sitzen Sie auf der Terrasse hinter dem Haus.",
+    "en": "Three generations of the Wild family welcome guests here. 16 rooms, each with its own layout, all with a private bathroom. Breakfast is served in the old dining room, and in summer you can sit on the terrace behind the house."
+  },
+  "image": "galerie-16"
 }

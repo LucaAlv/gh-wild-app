@@ -4,40 +4,71 @@ import { hrefFor, labels, navKeys } from '../lib/routes';
 import { imageAsset } from '../lib/images';
 import type { Locale } from '../lib/types';
 
-interface Props { locale: Locale; alternateHref: string; }
-const { locale, alternateHref } = Astro.props;
+interface Props { locale: Locale; alternateHref: string; routeKey?: string; routeKind?: string; }
+const { locale, alternateHref, routeKey, routeKind } = Astro.props;
 const copy = labels[locale];
+const de = locale === 'de';
+
+// A room detail page still belongs under "Zimmer" in the navigation.
+const activeKey = routeKind === 'room' ? 'rooms' : routeKey;
 ---
 
 <header class="site-header">
-  <a class="brand" href={hrefFor('home', locale)} aria-label={locale === 'de' ? 'Gästehaus Wild – Startseite' : 'Gästehaus Wild – Home'}>
-    <Image class="brand-mark" src={imageAsset('crest')} alt="" width={84} height={84} />
-    <Image src={imageAsset('wordmark')} alt="Gästehaus Wild" width={224} />
+  <a class="brand" href={hrefFor('home', locale)} aria-label={de ? 'Gästehaus Wild – Startseite' : 'Gästehaus Wild – home'}>
+    <Image class="brand-mark" src={imageAsset('crest')} alt="" width={60} height={60} densities={[1, 2]} />
+    <span class="brand-name">Gästehaus Wild</span>
   </a>
-  <nav class="desktop-nav" aria-label={locale === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
-    {navKeys.map((key) => <a href={hrefFor(key, locale)}>{copy[key as keyof typeof copy]}</a>)}
+
+  <nav class="desktop-nav" aria-label={de ? 'Hauptnavigation' : 'Main navigation'}>
+    {navKeys.map((key) => (
+      <a href={hrefFor(key, locale)} aria-current={key === activeKey ? 'page' : undefined}>
+        {copy[key as keyof typeof copy]}
+      </a>
+    ))}
   </nav>
+
   <div class="header-actions">
-    <a class="language-link" href={alternateHref} lang={locale === 'de' ? 'en' : 'de'} hreflang={locale === 'de' ? 'en' : 'de'}>
-      {locale === 'de' ? 'EN' : 'DE'}
+    <a class="language-link" href={alternateHref} lang={de ? 'en' : 'de'} hreflang={de ? 'en' : 'de'} aria-label={de ? 'Switch to English' : 'Auf Deutsch wechseln'}>
+      {de ? 'EN' : 'DE'}
     </a>
     <a class="button compact" href={hrefFor('inquiry', locale)}>{copy.inquiry}</a>
-    <button class="menu-button" type="button" aria-label={locale === 'de' ? 'Menü öffnen' : 'Open menu'} aria-expanded="false" aria-controls="mobile-menu">☰</button>
+    <button class="menu-button" type="button" aria-label={de ? 'Menü öffnen' : 'Open menu'} aria-expanded="false" aria-controls="mobile-menu">
+      <span class="glyph-wrap">
+        <span class="glyph-open" aria-hidden="true">☰</span>
+        <span class="glyph-close" aria-hidden="true">×</span>
+      </span>
+    </button>
   </div>
-  <nav class="mobile-nav" id="mobile-menu" data-open="false" aria-label={locale === 'de' ? 'Mobile Navigation' : 'Mobile navigation'}>
-    {navKeys.map((key) => <a href={hrefFor(key, locale)}>{copy[key as keyof typeof copy]}</a>)}
-    <a href={hrefFor('guest', locale)}>{copy.guest}</a>
-    <a href={hrefFor('inquiry', locale)}>{copy.inquiry}</a>
-  </nav>
+
+  <div class="mobile-nav-wrap" data-open="false">
+    <nav class="mobile-nav" id="mobile-menu" aria-label={de ? 'Mobile Navigation' : 'Mobile navigation'}>
+      {navKeys.map((key) => (
+        <a href={hrefFor(key, locale)} aria-current={key === activeKey ? 'page' : undefined}>
+          {copy[key as keyof typeof copy]}
+        </a>
+      ))}
+      <a href={hrefFor('guest', locale)}>{copy.guest}</a>
+    </nav>
+  </div>
 </header>
 
 <script>
   const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
-  const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu');
+  const menuWrap = document.querySelector<HTMLElement>('.mobile-nav-wrap');
+
+  function setMenu(open: boolean) {
+    menuButton?.setAttribute('aria-expanded', String(open));
+    menuWrap?.setAttribute('data-open', String(open));
+  }
+
   menuButton?.addEventListener('click', () => {
-    const open = menuButton.getAttribute('aria-expanded') !== 'true';
-    menuButton.setAttribute('aria-expanded', String(open));
-    mobileMenu?.setAttribute('data-open', String(open));
-    menuButton.textContent = open ? '×' : '☰';
+    setMenu(menuButton.getAttribute('aria-expanded') !== 'true');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menuButton?.getAttribute('aria-expanded') === 'true') {
+      setMenu(false);
+      menuButton.focus();
+    }
   });
 </script>
