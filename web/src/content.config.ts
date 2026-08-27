@@ -76,7 +76,6 @@ const pages = defineCollection({
     intro: localized,
     body: localized.optional(),
     options: z.array(localized).optional(),
-    testimonials: z.array(localized).optional(),
     image: z.string().optional(),
   }),
 });

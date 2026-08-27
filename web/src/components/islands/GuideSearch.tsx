@@ -16,10 +16,6 @@ const categories = {
   en: { all: 'All', emergency: 'Emergency', room: 'In your room', house: 'Around the house', food: 'Food & drink', practical: 'Practical', departure: 'Arrival & departure' },
 };
 
-const symbols: Record<string, string> = {
-  emergency: '✚', room: '⌂', house: '⌂', food: '☕', practical: 'i', departure: '↗',
-};
-
 function actionHref(action: Entry['actions'][number], locale: 'de' | 'en') {
   if (action.type === 'map') return `https://maps.apple.com/?q=${encodeURIComponent(action.target)}`;
   if (action.type === 'page') {
@@ -59,7 +55,7 @@ export default function GuideSearch({ entries, locale }: { entries: Entry[]; loc
     <div className="guide-list">
       {results.map((entry) => (
         <details className="guide-card" key={entry.id} id={entry.id}>
-          <summary><span aria-hidden="true">{symbols[entry.category] ?? '•'}</span>{entry.title[locale]}</summary>
+          <summary>{entry.title[locale]}</summary>
           <div className="guide-answer">
             <p>{entry.answer[locale]}</p>
             {entry.actions.length > 0 && <div className="guide-actions">

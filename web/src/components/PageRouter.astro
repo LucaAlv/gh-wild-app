@@ -24,7 +24,7 @@ const titleByKind: Record<string, string> = {
   nearby: de ? 'In der Nähe' : 'Nearby', arrival: de ? 'Anreise' : 'Getting here',
   guide: de ? 'Gästemappe A–Z' : 'House guide A–Z', guest: de ? 'Ich bin zu Gast' : "I'm staying here",
   stay: de ? 'Mein Aufenthalt' : 'My stay', inquiry: de ? 'Anfrage' : 'Inquiry',
-  thanks: de ? 'Vielen Dank' : 'Thank you', legal: '', goodToKnow: '', breakfast: '', garden: '',
+  thanks: de ? 'Vielen Dank' : 'Thank you', legal: '', breakfast: '', garden: '',
   about: '', services: '', vouchers: '',
 };
 
@@ -36,7 +36,7 @@ let contentPage: Awaited<ReturnType<typeof pageById>> | undefined;
 let legalPage: Awaited<ReturnType<typeof legalById>> | undefined;
 let room: Awaited<ReturnType<typeof roomById>> | undefined;
 
-if (route.contentId && ['home', 'breakfast', 'garden', 'about', 'services', 'vouchers', 'goodToKnow'].includes(route.kind)) {
+if (route.contentId && ['home', 'breakfast', 'garden', 'about', 'services', 'vouchers'].includes(route.kind)) {
   contentPage = await pageById(route.contentId);
   title = contentPage.data.title[locale];
   description = contentPage.data.intro[locale];
@@ -51,12 +51,44 @@ if (route.kind === 'room' && route.roomId) {
   description = room.data.description[locale];
 }
 
+// The home page's <h1> is a greeting, which makes a poor <title>. Keep them separate.
+const documentTitle = route.kind === 'home'
+  ? (de ? 'Gästehaus Wild · Übernachten in Oberasbach bei Nürnberg' : 'Gästehaus Wild · Bed & breakfast in Oberasbach near Nuremberg')
+  : undefined;
+
 const rooms = ['home', 'rooms', 'room', 'stay', 'inquiry'].includes(route.kind) ? await allRooms() : [];
+const featured = ['single', 'double', 'family']
+  .map((id) => rooms.find((entry) => entry.id === id))
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+const lowestPrice = rooms.length ? Math.min(...rooms.map((entry) => entry.data.price)) : 0;
+
 const noindex = route.noindex || Boolean(legalPage?.data.needsOwnerReview);
 const pageImage = contentPage?.data.image ? imageAsset(contentPage.data.image) : undefined;
 const amenities = de
   ? ['WC', 'Dusche oder Badewanne', 'Föhn', 'Duschgel, Shampoo & Seife', 'Ausreichend Handtücher', 'Kostenloses WLAN']
   : ['Toilet', 'Shower or bath', 'Hair dryer', 'Shower gel, shampoo & soap', 'Plenty of towels', 'Free Wi-Fi'];
+
+// The booking-relevant half of the former "Wissenswertes" page. The rest of it
+// duplicated the A–Z house guide and was removed.
+const houseFacts = de ? [
+  { label: 'Frühstück', value: '14 € pro Person, 7–10 Uhr (So ab 8 Uhr)' },
+  { label: 'Parken', value: 'Kostenfrei direkt vor dem Haus' },
+  { label: 'WLAN', value: 'Kostenlos in allen Zimmern' },
+  { label: 'Haustiere', value: 'Nach Absprache willkommen' },
+  { label: 'Nichtraucherhaus', value: 'Alle Zimmer sind Nichtraucherzimmer' },
+  { label: 'Barrierefrei', value: 'Zimmer im Erdgeschoss nach Absprache' },
+  { label: 'Kaffee & Tee', value: 'Kostenlos in der Lobby' },
+  { label: 'Fahrräder', value: 'Sicher abstellbar hinter dem Haus' },
+] : [
+  { label: 'Breakfast', value: '€14 per person, 7–10 am (Sun from 8 am)' },
+  { label: 'Parking', value: 'Free, directly outside the house' },
+  { label: 'Wi-Fi', value: 'Free in every room' },
+  { label: 'Pets', value: 'Welcome by prior arrangement' },
+  { label: 'Non-smoking', value: 'Every room is non-smoking' },
+  { label: 'Accessible', value: 'Ground-floor rooms by arrangement' },
+  { label: 'Coffee & tea', value: 'Complimentary in the lobby' },
+  { label: 'Bicycles', value: 'Secure storage behind the house' },
+];
 
 let galleryImages: { thumbnail: string; full: string; alt: string }[] = [];
 if (route.kind === 'gallery') {
@@ -77,7 +109,10 @@ const nearbyPlaces = route.kind === 'nearby'
     id: entry.id,
     ...entry.data,
     imageUrl: entry.data.image
-      ? (await getImage({ src: imageAsset(entry.data.image), width: 420, height: 560, fit: 'cover', format: 'webp' })).src
+      ? (await getImage({ src: imageAsset(entry.data.image), width: 320, height: 320, fit: 'cover', format: 'webp' })).src
+      : undefined,
+    detailImageUrl: entry.data.image
+      ? (await getImage({ src: imageAsset(entry.data.image), width: 1080, height: 608, fit: 'cover', format: 'webp', quality: 74 })).src
       : undefined,
   })))
   : [];
@@ -88,96 +123,423 @@ const wifi = route.kind === 'guest'
   : undefined;
 ---
 
-<BaseLayout locale={locale} title={title} description={description} canonical={canonical} alternate={alternate} noindex={noindex} installHint={route.kind === 'guest'}>
+<BaseLayout
+  locale={locale}
+  title={title}
+  documentTitle={documentTitle}
+  description={description}
+  canonical={canonical}
+  alternate={alternate}
+  routeKey={route.key}
+  routeKind={route.kind}
+  noindex={noindex}
+  installHint={route.kind === 'guest'}
+>
   {route.kind === 'home' && contentPage && (
     <>
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">{contentPage.data.eyebrow?.[locale]}</p>
-          <h1>{contentPage.data.intro[locale]}</h1>
-          <p class="lead muted">{contentPage.data.body?.[locale]}</p>
+          <h1>{contentPage.data.title[locale]}</h1>
+          <p class="lead muted">{contentPage.data.intro[locale]}</p>
           <div class="hero-actions">
-            <a class="button" href={hrefFor('rooms', locale)}>{de ? 'Zimmer entdecken' : 'Explore rooms'}</a>
-            <a class="button secondary" href={hrefFor('guest', locale)}>{de ? 'Ich bin zu Gast' : "I'm staying here"}</a>
+            <a class="button" href={hrefFor('inquiry', locale)}>{de ? 'Anfrage senden' : 'Send an inquiry'}</a>
+            <a class="button secondary" href={hrefFor('rooms', locale)}>{de ? 'Zimmer ansehen' : 'View rooms'}</a>
+          </div>
+          <div class="hero-facts">
+            <p><strong>{de ? `ab ${lowestPrice} €` : `from €${lowestPrice}`}</strong>{de ? 'pro Nacht' : 'per night'}</p>
+            <p><strong>16</strong>{de ? 'individuelle Zimmer' : 'individual rooms'}</p>
+            <p><strong>7 km</strong>{de ? 'bis Nürnberg' : 'to Nuremberg'}</p>
           </div>
         </div>
         <div class="hero-image">
-          <Image src={pageImage!} alt={de ? 'Historisches Fachwerkhaus des Gästehaus Wild' : 'The historic half-timbered Gästehaus Wild'} widths={[720, 1080, 1440]} sizes="(max-width: 1020px) 100vw, 55vw" format="avif" quality={72} loading="eager" />
-          <div class="hero-note">{de ? 'Oberasbach · wenige Minuten von Nürnberg' : 'Oberasbach · minutes from Nuremberg'}</div>
+          <Image
+            src={pageImage!}
+            alt={de ? 'Das Fachwerkhaus des Gästehaus Wild von außen' : 'The half-timbered Gästehaus Wild seen from outside'}
+            widths={[600, 900, 1200]}
+            sizes="(max-width: 1020px) 100vw, 52vw"
+            format="avif"
+            quality={72}
+            loading="eager"
+          />
         </div>
       </section>
-      <section class="feature-strip">
-        <div class="shell">
-          <div class="feature"><strong>{de ? 'Seit 1990' : 'Since 1990'}</strong><span>{de ? 'familiengeführt' : 'family-run'}</span></div>
-          <div class="feature"><strong>{de ? '16 Zimmer' : '16 rooms'}</strong><span>{de ? 'individuell eingerichtet' : 'individually furnished'}</span></div>
-          <div class="feature"><strong>{de ? '300+ Jahre' : '300+ years'}</strong><span>{de ? 'Fachwerkgeschichte' : 'of half-timbered history'}</span></div>
+
+      <section class="section tight shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">{de ? 'Übernachten' : 'Stay'}</p>
+            <h2>{de ? 'Unsere Zimmer' : 'Our rooms'}</h2>
+          </div>
+          <a class="text-link" href={hrefFor('rooms', locale)}>{de ? 'Alle sieben Kategorien' : 'All seven categories'}</a>
         </div>
-      </section>
-      <section class="section shell">
-        <div class="section-head"><div><p class="eyebrow">{de ? 'Bei uns übernachten' : 'Stay with us'}</p><h2>{de ? 'Ein Zimmer mit Charakter' : 'A room with character'}</h2></div><a class="text-link" href={hrefFor('rooms', locale)}>{de ? 'Alle Zimmer' : 'All rooms'} →</a></div>
         <div class="card-grid">
-          {rooms.slice(0, 3).map((entry) => (
-            <article class="room-card">
-              <Image src={imageAsset(entry.data.images[0])} alt={entry.data.name[locale]} widths={[360, 620, 900]} sizes="(max-width: 700px) 100vw, 33vw" format="webp" />
-              <div class="card-body"><h3>{entry.data.name[locale]}</h3><p class="muted">{entry.data.occupancy[locale]}</p><div class="card-meta"><span>{de ? `ab ${entry.data.price} €` : `from €${entry.data.price}`}</span><a class="text-link" href={hrefFor(entry.id, locale)} aria-label={`${entry.data.name[locale]} – ${de ? 'mehr erfahren' : 'learn more'}`}>→</a></div></div>
-            </article>
+          {featured.map((entry) => (
+            <a class="room-card" href={hrefFor(entry.id, locale)}>
+              <div class="room-card-image">
+                <Image src={imageAsset(entry.data.images[0])} alt={entry.data.name[locale]} widths={[360, 620, 900]} sizes="(max-width: 700px) 100vw, 33vw" format="webp" />
+              </div>
+              <div class="card-body">
+                <h3>{entry.data.name[locale]}</h3>
+                <p class="muted">{entry.data.occupancy[locale]}</p>
+                <div class="card-meta">
+                  <span>{de ? `ab ${entry.data.price} €` : `from €${entry.data.price}`}</span>
+                  <span class="text-link no-arrow">{de ? 'Ansehen →' : 'View →'}</span>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </section>
-      {contentPage.data.testimonials?.[0] && (
-        <section class="testimonial-section shell">
-          <blockquote>
-            <p>“{contentPage.data.testimonials[0][locale]}”</p>
-            <footer>{de ? 'Ein Gast über seinen Aufenthalt' : 'A guest describing their stay'}</footer>
-          </blockquote>
-        </section>
-      )}
-      <section class="section shell split">
-        <div class="page-image"><Image src={imageAsset('gallery-24'.replace('gallery', 'galerie'))} alt="" widths={[600, 1000]} sizes="(max-width: 700px) 100vw, 50vw" format="avif" /></div>
-        <div><p class="eyebrow">{de ? 'Ihre Gastgeber' : 'Your hosts'}</p><h2>{de ? 'Persönlich. Echt. Wild.' : 'Personal. Genuine. Wild.'}</h2><p class="lead muted">{de ? 'Drei Generationen, ein historisches Haus und die Freude daran, Menschen willkommen zu heißen.' : 'Three generations, one historic house and the joy of welcoming people.'}</p><a class="button secondary" href={hrefFor('about', locale)}>{de ? 'Unsere Geschichte' : 'Our story'}</a></div>
+
+      <section class="section tight shell split">
+        <div>
+          <p class="eyebrow">{de ? 'Das Haus' : 'The house'}</p>
+          <h2>{de ? 'Familie Wild' : 'The Wild family'}</h2>
+          <p class="lead muted">{contentPage.data.body?.[locale]}</p>
+          <div class="hero-actions" style="margin-top: 18px">
+            <a class="button secondary" href={hrefFor('about', locale)}>{de ? 'Über uns' : 'About us'}</a>
+            <a class="button secondary" href={hrefFor('gallery', locale)}>{de ? 'Galerie' : 'Gallery'}</a>
+          </div>
+        </div>
+        <div class="page-image">
+          <Image src={imageAsset('galerie-04')} alt={de ? 'Eingang des Gästehaus Wild' : 'The entrance of Gästehaus Wild'} widths={[500, 900]} sizes="(max-width: 700px) 100vw, 40vw" format="avif" />
+        </div>
       </section>
     </>
   )}
 
   {route.kind === 'rooms' && (
-    <><section class="page-hero shell"><p class="eyebrow">{de ? 'Individuell eingerichtet' : 'Individually furnished'}</p><h1>{de ? 'Unsere Zimmer' : 'Our rooms'}</h1><p class="lead muted">{de ? 'Sieben Kategorien, 16 ganz unterschiedliche Zimmer – mit dem Charakter unseres alten Hauses und allem, was einen angenehmen Aufenthalt ausmacht.' : 'Seven categories, 16 individual rooms—with the character of our old house and everything needed for a comfortable stay.'}</p></section><section class="section tight shell"><div class="card-grid">{rooms.map((entry) => <article class="room-card"><Image src={imageAsset(entry.data.images[0])} alt={entry.data.name[locale]} widths={[360, 620, 900]} sizes="(max-width: 700px) 100vw, 33vw" format="webp" /><div class="card-body"><h3>{entry.data.name[locale]}</h3><p class="muted">{entry.data.occupancy[locale]}</p><p>{entry.data.description[locale]}</p><div class="card-meta"><span>{de ? `ab ${entry.data.price} €` : `from €${entry.data.price}`}</span><a class="text-link" href={hrefFor(entry.id, locale)}>{de ? 'Ansehen' : 'View'} →</a></div></div></article>)}</div></section></>
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{de ? 'Sieben Kategorien' : 'Seven categories'}</p>
+        <h1>{de ? 'Unsere Zimmer' : 'Our rooms'}</h1>
+        <p class="lead muted">
+          {de
+            ? '16 Zimmer in einem alten Fachwerkhaus – jedes anders geschnitten, alle mit eigenem Bad.'
+            : '16 rooms in an old half-timbered house – each with its own layout, all with a private bathroom.'}
+        </p>
+      </section>
+
+      <section class="section tight shell">
+        <div class="card-grid">
+          {rooms.map((entry) => (
+            <a class="room-card" href={hrefFor(entry.id, locale)}>
+              <div class="room-card-image">
+                <Image src={imageAsset(entry.data.images[0])} alt={entry.data.name[locale]} widths={[360, 620, 900]} sizes="(max-width: 700px) 100vw, 33vw" format="webp" />
+              </div>
+              <div class="card-body">
+                <h3>{entry.data.name[locale]}</h3>
+                <p class="muted">{entry.data.occupancy[locale]}</p>
+                <div class="card-meta">
+                  <span>{de ? `ab ${entry.data.price} €` : `from €${entry.data.price}`}</span>
+                  <span class="text-link no-arrow">{de ? 'Ansehen →' : 'View →'}</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="section tight shell split">
+        <div>
+          <p class="eyebrow">{de ? 'In jedem Zimmer' : 'In every room'}</p>
+          <h2>{de ? 'Immer dabei' : 'Always included'}</h2>
+          <ul class="amenities" style="margin-top: 16px">{amenities.map((item) => <li>✓ {item}</li>)}</ul>
+        </div>
+        <div class="page-image">
+          <Image src={imageAsset('galerie-24')} alt={de ? 'Badezimmer mit Dusche' : 'Bathroom with shower'} widths={[500, 900]} sizes="(max-width: 700px) 100vw, 40vw" format="avif" />
+        </div>
+      </section>
+
+      <section class="section tight shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">{de ? 'Vor der Buchung' : 'Before you book'}</p>
+            <h2>{de ? 'Gut zu wissen' : 'Good to know'}</h2>
+          </div>
+          <a class="text-link" href={hrefFor('guide', locale)}>{de ? 'Gästemappe A–Z' : 'House guide A–Z'}</a>
+        </div>
+        <div class="fact-grid">
+          {houseFacts.map((fact) => <div class="fact"><strong>{fact.label}</strong><span>{fact.value}</span></div>)}
+        </div>
+      </section>
+    </>
   )}
 
   {route.kind === 'room' && room && (
-    <><section class="page-hero shell"><p class="eyebrow">{room.data.occupancy[locale]}</p><h1>{room.data.name[locale]}</h1><p class="lead muted">{room.data.description[locale]}</p></section><section class="section tight shell room-detail"><div class="room-detail-main"><Image src={imageAsset(room.data.images[0])} alt={room.data.name[locale]} widths={[720, 1100, 1500]} sizes="(max-width: 1020px) 100vw, 65vw" format="avif" /></div><aside class="paper-panel room-sidebar"><p class="eyebrow">{de ? 'Pro Nacht' : 'Per night'}</p><h2>{de ? `ab ${room.data.price} €` : `from €${room.data.price}`}</h2><p>{room.data.occupancy[locale]}</p><a class="button" href={`${hrefFor('inquiry', locale)}?room=${room.id}`}>{de ? 'Unverbindlich anfragen' : 'Send an inquiry'}</a><hr /><h3>{de ? 'Ausstattung' : 'Amenities'}</h3><ul class="amenities">{amenities.map((item) => <li>✓ {item}</li>)}</ul></aside></section></>
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{room.data.occupancy[locale]}</p>
+        <h1>{room.data.name[locale]}</h1>
+        <p class="lead muted">{room.data.description[locale]}</p>
+      </section>
+      <section class="section tight shell room-detail">
+        <div class="room-gallery">
+          <Image src={imageAsset(room.data.images[0])} alt={room.data.name[locale]} widths={[720, 1100]} sizes="(max-width: 1020px) 100vw, 60vw" format="avif" loading="eager" />
+          {room.data.images.length > 1 && (
+            <div class="room-gallery-rest">
+              {room.data.images.slice(1).map((name, index) => (
+                <Image src={imageAsset(name)} alt={`${room!.data.name[locale]} – ${de ? 'Ansicht' : 'view'} ${index + 2}`} widths={[360, 620]} sizes="(max-width: 1020px) 50vw, 30vw" format="webp" />
+              ))}
+            </div>
+          )}
+        </div>
+        <aside class="paper-panel room-sidebar">
+          <p class="eyebrow">{de ? 'Pro Nacht' : 'Per night'}</p>
+          <div class="room-price">
+            <strong>{de ? `ab ${room.data.price} €` : `from €${room.data.price}`}</strong>
+          </div>
+          <p class="muted">{room.data.occupancy[locale]}</p>
+          <a class="button" href={`${hrefFor('inquiry', locale)}?room=${room.id}`}>{de ? 'Unverbindlich anfragen' : 'Send an inquiry'}</a>
+          <hr />
+          <h3>{de ? 'Ausstattung' : 'Amenities'}</h3>
+          <ul class="amenities">{amenities.map((item) => <li>✓ {item}</li>)}</ul>
+          <a class="text-link" href={hrefFor('rooms', locale)}>{de ? 'Alle Zimmer' : 'All rooms'}</a>
+        </aside>
+      </section>
+    </>
   )}
 
-  {['breakfast', 'garden', 'about', 'services', 'vouchers', 'goodToKnow'].includes(route.kind) && contentPage && (
-    <><section class="page-hero shell"><p class="eyebrow">{contentPage.data.eyebrow?.[locale]}</p><h1>{contentPage.data.title[locale]}</h1><p class="lead muted">{contentPage.data.intro[locale]}</p></section><section class="section tight shell split"><div class="prose"><p>{contentPage.data.body?.[locale]}</p>{contentPage.data.options && <ul>{contentPage.data.options.map((item) => <li>{item[locale]}</li>)}</ul>}<div class="hero-actions"><a class="button" href={hrefFor('inquiry', locale)}>{de ? 'Jetzt anfragen' : 'Enquire now'}</a>{route.kind === 'breakfast' && <a class="button secondary" href={hrefFor('guide', locale)}>{de ? 'Zur Gästemappe' : 'House guide'}</a>}</div></div>{pageImage ? <div class="page-image"><Image src={pageImage} alt={contentPage.data.title[locale]} widths={[600, 1000]} sizes="(max-width: 700px) 100vw, 50vw" format="avif" /></div> : <div class="paper-panel"><p class="eyebrow">{de ? 'Kontakt' : 'Contact'}</p><h3>{de ? 'Wir beraten Sie persönlich' : 'We are happy to advise you'}</h3><p>0911 996910<br />info@gaestehaus-wild.com</p></div>}</section></>
+  {['breakfast', 'garden', 'about', 'services', 'vouchers'].includes(route.kind) && contentPage && (
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{contentPage.data.eyebrow?.[locale]}</p>
+        <h1>{contentPage.data.title[locale]}</h1>
+        <p class="lead muted">{contentPage.data.intro[locale]}</p>
+      </section>
+      <section class="section tight shell split">
+        <div class="prose">
+          <p>{contentPage.data.body?.[locale]}</p>
+          {contentPage.data.options && <ul>{contentPage.data.options.map((item) => <li>{item[locale]}</li>)}</ul>}
+          <div class="hero-actions">
+            <a class="button" href={hrefFor('inquiry', locale)}>{de ? 'Anfrage senden' : 'Send an inquiry'}</a>
+            {route.kind === 'breakfast' && <a class="button secondary" href={hrefFor('guide', locale)}>{de ? 'Gästemappe' : 'House guide'}</a>}
+          </div>
+        </div>
+        {pageImage ? (
+          <div class="page-image">
+            <Image src={pageImage} alt={contentPage.data.title[locale]} widths={[500, 900]} sizes="(max-width: 700px) 100vw, 40vw" format="avif" />
+          </div>
+        ) : (
+          <div class="paper-panel">
+            <p class="eyebrow">{de ? 'Kontakt' : 'Contact'}</p>
+            <h3>{de ? 'Wir beraten Sie persönlich' : 'We are happy to advise you'}</h3>
+            <p><a href="tel:+49911996910">0911 996910</a><br /><a href="mailto:info@gaestehaus-wild.com">info@gaestehaus-wild.com</a></p>
+          </div>
+        )}
+      </section>
+    </>
   )}
 
-  {route.kind === 'gallery' && <><section class="page-hero shell"><p class="eyebrow">{de ? 'Einblicke' : 'A closer look'}</p><h1>{de ? 'Galerie' : 'Gallery'}</h1><p class="lead muted">{de ? 'Historisches Fachwerk, individuell eingerichtete Zimmer und Lieblingsplätze rund ums Haus.' : 'Historic half-timbering, individually furnished rooms and favourite corners around the house.'}</p></section><section class="section tight shell"><GalleryLightbox client:load images={galleryImages} closeLabel={de ? 'Galerie schließen' : 'Close gallery'} /></section></>}
+  {route.kind === 'gallery' && (
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{de ? 'Einblicke' : 'A closer look'}</p>
+        <h1>{de ? 'Galerie' : 'Gallery'}</h1>
+        <p class="lead muted">{de ? 'Das Haus, die Zimmer und der Garten.' : 'The house, the rooms and the garden.'}</p>
+      </section>
+      <section class="section tight shell">
+        <GalleryLightbox client:load images={galleryImages} closeLabel={de ? 'Galerie schließen' : 'Close gallery'} />
+      </section>
+    </>
+  )}
 
   {route.kind === 'contact' && (
-    <><section class="page-hero shell"><p class="eyebrow">{de ? 'Persönlich erreichbar' : 'Here in person'}</p><h1>{de ? 'Kontakt' : 'Contact'}</h1><p class="lead muted">{de ? 'Rufen Sie uns an, schreiben Sie uns oder kommen Sie vorbei. Wir freuen uns auf Sie.' : 'Call, write or come by. We look forward to hearing from you.'}</p></section><section class="section tight shell split"><div class="paper-panel"><h3>Gästehaus Wild</h3><p>Jahnstraße 77<br />90522 Oberasbach<br />{de ? 'Deutschland' : 'Germany'}</p><p><a href="tel:+49911996910">{de ? '0911 996910' : '+49 911 996910'}</a><br /><a href="mailto:info@gaestehaus-wild.com">info@gaestehaus-wild.com</a></p><div class="hero-actions"><a class="button" href={hrefFor('inquiry', locale)}>{de ? 'Anfrage senden' : 'Send inquiry'}</a><a class="button secondary" href="https://maps.apple.com/?daddr=49.4224662,10.9807374">{de ? 'Route öffnen' : 'Open directions'}</a></div></div><div><p class="eyebrow">{de ? 'Gut anzukommen' : 'Easy to reach'}</p><h2>{de ? 'Ruhig gelegen, nah an Nürnberg' : 'Peaceful, close to Nuremberg'}</h2><p class="lead muted">{de ? 'Kostenfreie Parkplätze finden Sie direkt vor dem Haus. Der Bahnhof Unterasbach ist etwa zwölf Gehminuten entfernt.' : 'Free parking is directly outside. Unterasbach station is about a twelve-minute walk away.'}</p><a class="text-link" href={hrefFor('arrival', locale)}>{de ? 'Anreise mit Bus & Bahn' : 'Getting here by public transport'} →</a></div></section></>
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{de ? 'Persönlich erreichbar' : 'Here in person'}</p>
+        <h1>{de ? 'Kontakt' : 'Contact'}</h1>
+        <p class="lead muted">{de ? 'Rufen Sie uns an oder schreiben Sie uns – wir antworten persönlich.' : 'Call or write to us – we reply personally.'}</p>
+      </section>
+      <section class="section tight shell split">
+        <div class="paper-panel">
+          <h3>Gästehaus Wild</h3>
+          <p>Jahnstraße 77<br />90522 Oberasbach<br />{de ? 'Deutschland' : 'Germany'}</p>
+          <p>
+            <a href="tel:+49911996910">{de ? '0911 996910' : '+49 911 996910'}</a><br />
+            <a href="mailto:info@gaestehaus-wild.com">info@gaestehaus-wild.com</a>
+          </p>
+          <div class="hero-actions">
+            <a class="button" href={hrefFor('inquiry', locale)}>{de ? 'Anfrage senden' : 'Send inquiry'}</a>
+            <a class="button secondary" href="https://maps.apple.com/?daddr=49.4224662,10.9807374">{de ? 'Route öffnen' : 'Open directions'}</a>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow">{de ? 'Gut anzukommen' : 'Easy to reach'}</p>
+          <h2>{de ? 'Ruhig gelegen, nah an Nürnberg' : 'Peaceful, close to Nuremberg'}</h2>
+          <p class="lead muted">{de ? 'Kostenfreie Parkplätze finden Sie direkt vor dem Haus. Der Bahnhof Unterasbach ist etwa zwölf Gehminuten entfernt.' : 'Free parking is directly outside. Unterasbach station is about a twelve-minute walk away.'}</p>
+          <a class="text-link" href={hrefFor('arrival', locale)}>{de ? 'Anreise mit Bus & Bahn' : 'Getting here by public transport'}</a>
+        </div>
+      </section>
+    </>
   )}
 
-  {route.kind === 'guide' && <><section class="page-hero narrow"><p class="eyebrow">{de ? 'Schnell gefunden' : 'Find it quickly'}</p><h1>{de ? 'Gästemappe A–Z' : 'House guide A–Z'}</h1><p class="lead muted">{de ? 'Alles Wichtige für Ihren Aufenthalt – vom WLAN bis zum Check-out.' : 'Everything important for your stay—from Wi-Fi to check-out.'}</p></section><section class="section tight narrow"><GuideSearch client:load entries={guideEntries} locale={locale} /></section></>}
+  {route.kind === 'guide' && (
+    <>
+      <section class="page-hero narrow">
+        <p class="eyebrow">{de ? 'Schnell gefunden' : 'Find it quickly'}</p>
+        <h1>{de ? 'Gästemappe A–Z' : 'House guide A–Z'}</h1>
+        <p class="lead muted">{de ? 'Alles Wichtige für Ihren Aufenthalt – vom WLAN bis zum Check-out.' : 'Everything important for your stay—from Wi-Fi to check-out.'}</p>
+      </section>
+      <section class="section tight narrow">
+        <GuideSearch client:load entries={guideEntries} locale={locale} />
+      </section>
+    </>
+  )}
 
-  {route.kind === 'nearby' && <><section class="page-hero shell"><p class="eyebrow">{de ? 'Lieblingsorte der Familie' : 'Family favourites'}</p><h1>{de ? 'In der Nähe' : 'Nearby'}</h1><p class="lead muted">{de ? 'Vom Hainberg vor der Tür bis zur Nürnberger Altstadt – nach Entfernung sortiert und mit unseren persönlichen Tipps.' : 'From the Hainberg outside to Nuremberg’s old town—sorted by distance with our personal tips.'}</p></section><section class="section tight shell"><NearbyExplorer client:load places={nearbyPlaces} locale={locale} /></section></>}
+  {route.kind === 'nearby' && (
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{de ? 'Lieblingsorte der Familie' : 'Family favourites'}</p>
+        <h1>{de ? 'In der Nähe' : 'Nearby'}</h1>
+        <p class="lead muted">{de ? 'Vom Hainberg vor der Tür bis zur Nürnberger Altstadt – nach Entfernung sortiert.' : 'From the Hainberg outside to Nuremberg’s old town – sorted by distance.'}</p>
+      </section>
+      <section class="section tight shell">
+        <NearbyExplorer client:load places={nearbyPlaces} locale={locale} />
+      </section>
+    </>
+  )}
 
-  {route.kind === 'arrival' && <><section class="page-hero narrow"><p class="eyebrow">{de ? 'Offline-Spickzettel' : 'Offline cheat sheets'}</p><h1>{de ? 'Anreise' : 'Getting here'}</h1><p class="lead muted">{de ? 'Die wichtigsten Wege vom Gästehaus – kurz, speicherbar und ohne Live-Routing.' : 'The most useful routes from the guesthouse—concise, savable and without live routing.'}</p></section><section class="section tight narrow route-list">{arrivalEntries.map((entry) => <article class="route-card"><p class="eyebrow">{entry.data.durationSummary[locale]}</p><h3>{entry.data.destination[locale]}</h3><ol>{entry.data.steps.map((step) => <li>{step[locale]}</li>)}</ol>{entry.data.tip && <p class="notice"><strong>{de ? 'Tipp:' : 'Tip:'}</strong> {entry.data.tip[locale]}</p>}</article>)}</section></>}
+  {route.kind === 'arrival' && (
+    <>
+      <section class="page-hero narrow">
+        <p class="eyebrow">{de ? 'Offline-Spickzettel' : 'Offline cheat sheets'}</p>
+        <h1>{de ? 'Anreise' : 'Getting here'}</h1>
+        <p class="lead muted">{de ? 'Die wichtigsten Wege vom Gästehaus – kurz und speicherbar.' : 'The most useful routes from the guesthouse – concise and savable.'}</p>
+      </section>
+      <section class="section tight narrow route-list">
+        {arrivalEntries.map((entry) => (
+          <article class="route-card">
+            <p class="eyebrow">{entry.data.durationSummary[locale]}</p>
+            <h3>{entry.data.destination[locale]}</h3>
+            <ol>{entry.data.steps.map((step) => <li>{step[locale]}</li>)}</ol>
+            {entry.data.tip && <p class="notice"><strong>{de ? 'Tipp:' : 'Tip:'}</strong> {entry.data.tip[locale]}</p>}
+          </article>
+        ))}
+      </section>
+    </>
+  )}
 
   {route.kind === 'stay' && (
-    <><section class="page-hero shell"><p class="eyebrow">{de ? 'Privat auf Ihrem Gerät' : 'Private on your device'}</p><h1>{de ? 'Mein Aufenthalt' : 'My stay'}</h1><p class="lead muted">{de ? 'Speichern Sie Ihre Reisedaten lokal und nehmen Sie hilfreiche Erinnerungen direkt in Ihren Kalender mit.' : 'Save your travel dates locally and add helpful reminders straight to your calendar.'}</p></section><section class="section tight shell"><StayPlanner client:load locale={locale} rooms={rooms.map((entry) => ({ id: entry.id, name: entry.data.name }))} /></section></>
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{de ? 'Privat auf Ihrem Gerät' : 'Private on your device'}</p>
+        <h1>{de ? 'Mein Aufenthalt' : 'My stay'}</h1>
+        <p class="lead muted">{de ? 'Speichern Sie Ihre Reisedaten lokal und nehmen Sie Erinnerungen in Ihren Kalender mit.' : 'Save your travel dates locally and add reminders to your calendar.'}</p>
+      </section>
+      <section class="section tight shell">
+        <StayPlanner client:load locale={locale} rooms={rooms.map((entry) => ({ id: entry.id, name: entry.data.name }))} />
+      </section>
+    </>
   )}
 
-  {route.kind === 'guest' && wifi && <><section class="page-hero shell"><p class="eyebrow">{de ? 'Willkommen bei uns' : 'Welcome'}</p><h1>{de ? 'Ich bin zu Gast' : "I'm staying here"}</h1><p class="lead muted">{de ? 'WLAN, Frühstück und alles Wichtige für Ihren Aufenthalt – sofort zur Hand.' : 'Wi-Fi, breakfast and everything important for your stay—right at hand.'}</p></section><section class="section tight shell"><WifiCard client:load ssid={wifi.ssid} password={wifi.password} locale={locale} /><div class="guest-grid" style="margin-top: 18px"><a class="quick-card" href={hrefFor('stay', locale)}><span class="quick-icon">◫</span><h3>{de ? 'Mein Aufenthalt' : 'My stay'}</h3><span class="muted">{de ? 'Daten & Kalender' : 'Dates & calendar'}</span></a><a class="quick-card" href={hrefFor('guide', locale)}><span class="quick-icon">A–Z</span><h3>{de ? 'Gästemappe' : 'House guide'}</h3><span class="muted">{de ? 'Schnell durchsuchen' : 'Search quickly'}</span></a><a class="quick-card" href={hrefFor('breakfast', locale)}><span class="quick-icon">☕</span><h3>{de ? 'Frühstück' : 'Breakfast'}</h3><span class="muted">{de ? 'Zeiten & Allergien' : 'Times & allergies'}</span></a><a class="quick-card" href={hrefFor('contact', locale)}><span class="quick-icon">☎</span><h3>{de ? 'Wir sind für Sie da' : 'We are here for you'}</h3><span class="muted">0911 996910</span></a></div></section></>}
+  {route.kind === 'guest' && wifi && (
+    <>
+      <section class="page-hero shell">
+        <p class="eyebrow">{de ? 'Willkommen bei uns' : 'Welcome'}</p>
+        <h1>{de ? 'Ich bin zu Gast' : "I'm staying here"}</h1>
+        <p class="lead muted">{de ? 'WLAN, Frühstück und alles Wichtige – sofort zur Hand.' : 'Wi-Fi, breakfast and everything important – right at hand.'}</p>
+      </section>
+      <section class="section tight shell">
+        <WifiCard client:load ssid={wifi.ssid} password={wifi.password} locale={locale} />
+        <div class="guest-grid" style="margin-top: 16px">
+          <a class="quick-card" href={hrefFor('stay', locale)}>
+            <span class="quick-icon">◫</span>
+            <h3>{de ? 'Mein Aufenthalt' : 'My stay'}</h3>
+            <span class="muted">{de ? 'Daten & Kalender' : 'Dates & calendar'}</span>
+          </a>
+          <a class="quick-card" href={hrefFor('guide', locale)}>
+            <span class="quick-icon">A–Z</span>
+            <h3>{de ? 'Gästemappe' : 'House guide'}</h3>
+            <span class="muted">{de ? 'Schnell durchsuchen' : 'Search quickly'}</span>
+          </a>
+          <a class="quick-card" href={hrefFor('breakfast', locale)}>
+            <span class="quick-icon">7–10</span>
+            <h3>{de ? 'Frühstück' : 'Breakfast'}</h3>
+            <span class="muted">{de ? 'Zeiten & Allergien' : 'Times & allergies'}</span>
+          </a>
+          <a class="quick-card" href={hrefFor('contact', locale)}>
+            <span class="quick-icon">☎</span>
+            <h3>{de ? 'Wir sind für Sie da' : 'We are here for you'}</h3>
+            <span class="muted">0911 996910</span>
+          </a>
+        </div>
+      </section>
+    </>
+  )}
 
   {route.kind === 'inquiry' && (
-    <><section class="page-hero narrow"><p class="eyebrow">{de ? 'Unverbindlich' : 'No obligation'}</p><h1>{de ? 'Anfrage' : 'Inquiry'}</h1><p class="lead muted">{de ? 'Sagen Sie uns, wann und mit wem Sie kommen möchten. Wir melden uns persönlich bei Ihnen.' : 'Tell us when and with whom you would like to stay. We will reply personally.'}</p></section><section class="section tight narrow"><form class="paper-panel form-grid" method="post" action="/api/inquiry"><input type="hidden" name="language" value={locale} /><div class="field honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div><div class="field"><label for="firstName">{de ? 'Vorname' : 'First name'} *</label><input id="firstName" name="firstName" required autocomplete="given-name" /></div><div class="field"><label for="lastName">{de ? 'Nachname' : 'Last name'} *</label><input id="lastName" name="lastName" required autocomplete="family-name" /></div><div class="field"><label for="phone">{de ? 'Telefonnummer' : 'Phone number'}</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div><div class="field"><label for="email">{de ? 'E-Mail-Adresse' : 'Email address'} *</label><input id="email" name="email" type="email" required autocomplete="email" /></div><div class="field full"><label for="roomCategory">{de ? 'Zimmerkategorie' : 'Room category'} *</label><select id="roomCategory" name="roomCategory" required><option value="">{de ? 'Bitte auswählen' : 'Please select'}</option>{rooms.map((entry) => <option value={entry.id} selected={Astro.url.searchParams.get('room') === entry.id}>{entry.data.name[locale]}</option>)}</select></div><div class="field"><label for="arrival">{de ? 'Anreisedatum' : 'Arrival date'} *</label><input id="arrival" name="arrival" type="date" required /></div><div class="field"><label for="departure">{de ? 'Abreisedatum' : 'Departure date'} *</label><input id="departure" name="departure" type="date" required /></div><div class="field"><label for="adults">{de ? 'Anzahl Erwachsene' : 'Adults'}</label><input id="adults" name="adults" type="number" min="1" max="30" value="1" /></div><div class="field"><label for="children">{de ? 'Anzahl Kinder' : 'Children'}</label><input id="children" name="children" type="number" min="0" max="20" value="0" /></div><div class="field full"><label for="message">{de ? 'Nachricht' : 'Message'}</label><textarea id="message" name="message"></textarea></div><label class="checkbox field full"><input name="consent" type="checkbox" value="yes" required /><span>{de ? 'Ich habe die ' : 'I have read the '}<a href={hrefFor('datenschutz', locale)}>{de ? 'Datenschutzerklärung' : 'privacy policy'}</a>{de ? ' gelesen und stimme der Verarbeitung zur Bearbeitung meiner Anfrage zu.' : ' and consent to processing for my inquiry.'} *</span></label>{import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ? <div class="field full"><div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script></div> : <p class="notice warning field full">{de ? 'Das Formular wird in der geschützten Vorschau erst nach Einrichtung des Spam-Schutzes aktiviert.' : 'The form will be enabled on the protected preview after spam protection is configured.'}</p>}<div class="field full"><button class="button" type="submit" disabled={!import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}>{de ? 'Anfrage abschicken' : 'Send inquiry'}</button></div></form></section></>
+    <>
+      <section class="page-hero narrow">
+        <p class="eyebrow">{de ? 'Unverbindlich' : 'No obligation'}</p>
+        <h1>{de ? 'Anfrage' : 'Inquiry'}</h1>
+        <p class="lead muted">{de ? 'Sagen Sie uns, wann und mit wem Sie kommen möchten. Wir melden uns persönlich bei Ihnen.' : 'Tell us when and with whom you would like to stay. We will reply personally.'}</p>
+      </section>
+      <section class="section tight narrow">
+        <form class="paper-panel form-grid" method="post" action="/api/inquiry">
+          <input type="hidden" name="language" value={locale} />
+          <div class="field honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
+          <div class="field"><label for="firstName">{de ? 'Vorname' : 'First name'} *</label><input id="firstName" name="firstName" required autocomplete="given-name" /></div>
+          <div class="field"><label for="lastName">{de ? 'Nachname' : 'Last name'} *</label><input id="lastName" name="lastName" required autocomplete="family-name" /></div>
+          <div class="field"><label for="phone">{de ? 'Telefonnummer' : 'Phone number'}</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+          <div class="field"><label for="email">{de ? 'E-Mail-Adresse' : 'Email address'} *</label><input id="email" name="email" type="email" required autocomplete="email" /></div>
+          <div class="field full">
+            <label for="roomCategory">{de ? 'Zimmerkategorie' : 'Room category'} *</label>
+            <select id="roomCategory" name="roomCategory" required>
+              <option value="">{de ? 'Bitte auswählen' : 'Please select'}</option>
+              {rooms.map((entry) => <option value={entry.id} selected={Astro.url.searchParams.get('room') === entry.id}>{entry.data.name[locale]}</option>)}
+            </select>
+          </div>
+          <div class="field"><label for="arrival">{de ? 'Anreisedatum' : 'Arrival date'} *</label><input id="arrival" name="arrival" type="date" required /></div>
+          <div class="field"><label for="departure">{de ? 'Abreisedatum' : 'Departure date'} *</label><input id="departure" name="departure" type="date" required /></div>
+          <div class="field"><label for="adults">{de ? 'Anzahl Erwachsene' : 'Adults'}</label><input id="adults" name="adults" type="number" min="1" max="30" value="1" /></div>
+          <div class="field"><label for="children">{de ? 'Anzahl Kinder' : 'Children'}</label><input id="children" name="children" type="number" min="0" max="20" value="0" /></div>
+          <div class="field full"><label for="message">{de ? 'Nachricht' : 'Message'}</label><textarea id="message" name="message"></textarea></div>
+          <label class="checkbox field full">
+            <input name="consent" type="checkbox" value="yes" required />
+            <span>{de ? 'Ich habe die ' : 'I have read the '}<a href={hrefFor('datenschutz', locale)}>{de ? 'Datenschutzerklärung' : 'privacy policy'}</a>{de ? ' gelesen und stimme der Verarbeitung zur Bearbeitung meiner Anfrage zu.' : ' and consent to processing for my inquiry.'} *</span>
+          </label>
+          {import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ? (
+            <div class="field full">
+              <div class="cf-turnstile" data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}></div>
+              <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+            </div>
+          ) : (
+            <p class="notice warning field full">{de ? 'Das Formular wird in der geschützten Vorschau erst nach Einrichtung des Spam-Schutzes aktiviert.' : 'The form will be enabled on the protected preview after spam protection is configured.'}</p>
+          )}
+          <div class="field full"><button class="button" type="submit" disabled={!import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}>{de ? 'Anfrage abschicken' : 'Send inquiry'}</button></div>
+        </form>
+      </section>
+    </>
   )}
 
   {route.kind === 'thanks' && (
-    <section class="page-hero narrow"><p class="eyebrow">{de ? 'Anfrage gesendet' : 'Inquiry sent'}</p><h1>{de ? 'Vielen Dank' : 'Thank you'}</h1><p class="lead muted">{de ? 'Ihre Nachricht ist bei uns angekommen. Wir melden uns so bald wie möglich persönlich bei Ihnen.' : 'Your message has reached us. We will reply personally as soon as possible.'}</p><a class="button" href={hrefFor('home', locale)}>{de ? 'Zur Startseite' : 'Back home'}</a></section>
+    <section class="page-hero narrow">
+      <p class="eyebrow">{de ? 'Anfrage gesendet' : 'Inquiry sent'}</p>
+      <h1>{de ? 'Vielen Dank' : 'Thank you'}</h1>
+      <p class="lead muted">{de ? 'Ihre Nachricht ist bei uns angekommen. Wir melden uns so bald wie möglich persönlich bei Ihnen.' : 'Your message has reached us. We will reply personally as soon as possible.'}</p>
+      <div class="hero-actions" style="margin-top: 20px"><a class="button" href={hrefFor('home', locale)}>{de ? 'Zur Startseite' : 'Back home'}</a></div>
+    </section>
   )}
 
   {route.kind === 'legal' && legalPage && (
-    <><section class="page-hero narrow"><p class="eyebrow">{de ? 'Rechtliches' : 'Legal'}</p><h1>{legalPage.data.title[locale]}</h1></section><section class="section tight narrow"><div class="paper-panel prose">{legalPage.data.needsOwnerReview && <p class="notice warning"><strong>{de ? 'Geschützte Vorschau:' : 'Protected preview:'}</strong> {de ? 'Dieser Entwurf wird vor der öffentlichen Freigabe fachlich geprüft.' : 'This draft will be professionally reviewed before public release.'}</p>}<p>{legalPage.data.body[locale]}</p></div></section></>
+    <>
+      <section class="page-hero narrow">
+        <p class="eyebrow">{de ? 'Rechtliches' : 'Legal'}</p>
+        <h1>{legalPage.data.title[locale]}</h1>
+      </section>
+      <section class="section tight narrow">
+        <div class="paper-panel prose">
+          {legalPage.data.needsOwnerReview && (
+            <p class="notice warning">
+              <strong>{de ? 'Geschützte Vorschau:' : 'Protected preview:'}</strong>
+              {de ? ' Dieser Entwurf wird vor der öffentlichen Freigabe fachlich geprüft.' : ' This draft will be professionally reviewed before public release.'}
+            </p>
+          )}
+          <p>{legalPage.data.body[locale]}</p>
+        </div>
+      </section>
+    </>
   )}
 </BaseLayout>

@@ -6,7 +6,9 @@
   },
   "redirects": [
     { "source": "/unsere-zimmer", "destination": "/zimmer", "permanent": true },
-    { "source": "/text", "destination": "/wissenswertes", "permanent": true },
+    { "source": "/text", "destination": "/zimmer", "permanent": true },
+    { "source": "/wissenswertes", "destination": "/zimmer", "permanent": true },
+    { "source": "/en/good-to-know", "destination": "/en/rooms", "permanent": true },
     { "source": "/ueber-uns", "destination": "/über-uns", "permanent": true }
   ],
   "headers": [

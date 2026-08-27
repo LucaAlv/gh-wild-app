@@ -18,7 +18,6 @@ export const routes: RouteDefinition[] = [
   { key: 'nearby', kind: 'nearby', de: 'in-der-nähe', en: 'nearby' },
   { key: 'services', kind: 'services', de: 'sonstige-leistungen', en: 'other-services', contentId: 'services' },
   { key: 'vouchers', kind: 'vouchers', de: 'gutscheine', en: 'gift-vouchers', contentId: 'vouchers' },
-  { key: 'goodToKnow', kind: 'goodToKnow', de: 'wissenswertes', en: 'good-to-know', contentId: 'good-to-know' },
   { key: 'inquiry', kind: 'inquiry', de: 'anfrage', en: 'inquiry' },
   { key: 'thanks', kind: 'thanks', de: 'vielen-dank', en: 'thank-you', noindex: true },
   { key: 'guest', kind: 'guest', de: 'gast', en: 'guest', noindex: true },
@@ -41,15 +40,15 @@ export function routeForSlug(slug: string, locale: Locale): RouteDefinition | un
   return routes.find((route) => route[locale] === slug);
 }
 
-export const navKeys = ['rooms', 'breakfast', 'gallery', 'nearby', 'goodToKnow', 'contact'];
+export const navKeys = ['rooms', 'breakfast', 'gallery', 'nearby', 'contact'];
 
 export const labels = {
   de: {
     rooms: 'Zimmer', breakfast: 'Frühstück', gallery: 'Galerie', nearby: 'In der Nähe',
-    goodToKnow: 'Wissenswertes', contact: 'Kontakt', inquiry: 'Anfragen', guest: 'Ich bin zu Gast',
+    contact: 'Kontakt', inquiry: 'Anfragen', guest: 'Ich bin zu Gast',
   },
   en: {
     rooms: 'Rooms', breakfast: 'Breakfast', gallery: 'Gallery', nearby: 'Nearby',
-    goodToKnow: 'Good to know', contact: 'Contact', inquiry: 'Enquire', guest: "I'm staying here",
+    contact: 'Contact', inquiry: 'Enquire', guest: "I'm staying here",
   },
 } as const;

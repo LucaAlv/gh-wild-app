@@ -12,8 +12,9 @@ const de = locale === 'de';
 <footer class="site-footer">
   <div class="shell footer-grid">
     <div class="footer-brand">
-      <Image src={imageAsset('wordmark')} alt="Gästehaus Wild" width={360} />
-      <p>{de ? 'Ankommen. Durchatmen. Zuhause fühlen.' : 'Arrive. Unwind. Feel at home.'}</p>
+      <Image src={imageAsset('crest')} alt="" width={132} height={132} densities={[1, 2]} />
+      <strong>Gästehaus Wild</strong>
+      <p>{de ? 'Familiengeführtes Gästehaus in einem über 300 Jahre alten Fachwerkhaus.' : 'A family-run guesthouse in a 300-year-old half-timbered house.'}</p>
     </div>
     <div class="footer-links">
       <h3>{de ? 'Besuchen' : 'Visit'}</h3>
@@ -26,6 +27,8 @@ const de = locale === 'de';
       <h3>{de ? 'Information' : 'Information'}</h3>
       <a href={hrefFor('about', locale)}>{de ? 'Über uns' : 'About us'}</a>
       <a href={hrefFor('arrival', locale)}>{de ? 'Anreise' : 'Getting here'}</a>
+      <a href={hrefFor('vouchers', locale)}>{de ? 'Gutscheine' : 'Gift vouchers'}</a>
+      <a href={hrefFor('services', locale)}>{de ? 'Sonstige Leistungen' : 'Other services'}</a>
       <a href={hrefFor('impressum', locale)}>{de ? 'Impressum' : 'Legal notice'}</a>
       <a href={hrefFor('datenschutz', locale)}>{de ? 'Datenschutz' : 'Privacy'}</a>
       <a href={hrefFor('agb', locale)}>{de ? 'AGB' : 'Terms'}</a>
@@ -33,6 +36,6 @@ const de = locale === 'de';
   </div>
   <div class="shell footer-bottom">
     <span>© {new Date().getFullYear()} Gästehaus Wild</span>
-    <span>{de ? 'Familiengeführt in Oberasbach' : 'Family-run in Oberasbach'}</span>
+    <span>{de ? 'Oberasbach bei Nürnberg · seit 1990' : 'Oberasbach near Nuremberg · since 1990'}</span>
   </div>
 </footer>
