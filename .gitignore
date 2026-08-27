@@ -13,3 +13,4 @@ web/.vercel/
 web/.env
 web/.env.*
 !web/.env.example
+.playwright-mcp/
